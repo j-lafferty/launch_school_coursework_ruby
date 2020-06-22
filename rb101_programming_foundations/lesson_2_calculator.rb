@@ -11,6 +11,16 @@ def valid_number?(num)
   num.to_i != 0
 end
 
+def operation_to_message(op)
+  case op
+  when 'add' then 'Adding'
+  when 'subtract' then 'Subtracting'
+  when 'multiply' then 'Multiplying'
+  when 'divide' then 'Dividing'
+  end
+end
+
+
 number1 = ''
 number2 = ''
 operation = ''
@@ -47,6 +57,9 @@ loop do # main program loop
     prompt("Must choose Add, Subtract, Multiply, or Divide")  
   end
   
+  prompt("")
+  prompt("#{operation_to_message(operation)} the two numbers...")
+  prompt("")
 
   result = case operation
           when 'add' then number1.to_i + number2.to_i
