@@ -39,7 +39,14 @@ loop do # main program loop
   prompt("--Subtract")
   prompt("--Multiply")
   prompt("--Divide")
-  operation = gets.chomp.downcase
+
+  loop do
+    operation = gets.chomp.downcase
+    
+    break if %w(add subtract multiply divide).include?(operation)
+    prompt("Must choose Add, Subtract, Multiply, or Divide")  
+  end
+  
 
   result = case operation
           when 'add' then number1.to_i + number2.to_i
