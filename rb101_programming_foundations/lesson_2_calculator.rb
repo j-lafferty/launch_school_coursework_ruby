@@ -21,11 +21,18 @@ prompt("--Multiply")
 prompt("--Divide")
 operation = gets.chomp.downcase
 
-case operation
-when 'add' then prompt("#{number1} + #{number2} = #{number1.to_i + number2.to_i}")
-when 'subtract' then prompt("#{number1} - #{number2} = #{number1.to_i - number2.to_i}")
-when 'multiply' then prompt("#{number1} * #{number2} = #{number1.to_i * number2.to_i}")
-when 'divide' then prompt("#{number1} / #{number2} = #{number1.to_f / number2.to_f}")
-else prompt("Incorrect operation selection")
+result = case operation
+         when 'add' then number1.to_i + number2.to_i
+         when 'subtract' then number1.to_i - number2.to_i
+         when 'multiply' then number1.to_i * number2.to_i
+         when 'divide' then number1.to_f / number2.to_f
 end
 
+sign = case operation
+       when 'add' then '+'
+       when 'subtract' then '-'
+       when 'multiply' then '*'
+       when 'divide' then '/'
+end
+
+prompt("#{number1} #{sign} #{number2} = #{result}")
