@@ -26,6 +26,9 @@ Hints:
 >Choose variable names carefully to assist in remembering.
 
 =end
+def prompt(message)
+  puts "=> #{message}"
+end
 
 def valid_number?(num)
   integer?(num) || float?(num)
@@ -51,9 +54,12 @@ loan_amount = ''
 apr = ''
 loan_duration = ''
 
+prompt("Welcome to the Loan Calculator!")
+prompt("Follow the prompts to find your monthly payments")
+
 loop do
   loop do
-    puts "=> Please enter the loan amount:"
+    prompt("Please enter the loan amount:")
     loan_amount = gets.chomp
 
     break if valid_number?(loan_amount)
