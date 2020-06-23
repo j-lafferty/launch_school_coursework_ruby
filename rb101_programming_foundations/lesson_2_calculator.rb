@@ -8,8 +8,24 @@ def prompt(message)
 end
 
 def valid_number?(num)
-  num.to_i != 0
+  integer?(num) || float?(num)
 end
+
+def integer?(num)
+  num.to_i.to_s == num
+end
+
+def float?(num)
+  num.to_f.to_s == num
+end
+
+def to_float_or_to_integer?(num)
+  if num.to_i.to_s == num
+    num.to_i
+  elsif num.to_f.to_s == num
+    num.to_f
+  end
+end 
 
 def operation_to_message(op)
   case op
@@ -43,6 +59,9 @@ loop do # main program loop
     prompt("Hmm... that doesn't look like a valid number.")
   end
 
+  number1 = to_float_or_to_integer?(number1)
+  number2 = to_float_or_to_integer?(number2)
+
   prompt("What operation would you like to perform on these two numbers?")
   prompt("--Add")
   prompt("--Subtract")
@@ -61,10 +80,10 @@ loop do # main program loop
   prompt("")
 
   result = case operation
-           when 'add' then number1.to_i + number2.to_i
-           when 'subtract' then number1.to_i - number2.to_i
-           when 'multiply' then number1.to_i * number2.to_i
-           when 'divide' then number1.to_f / number2.to_f
+           when 'add' then number1 + number2
+           when 'subtract' then number1 - number2
+           when 'multiply' then number1 * number2
+           when 'divide' then number1 / number2
            end
 
   sign = case operation
