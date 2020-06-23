@@ -1,4 +1,4 @@
-=begin 
+=begin
 
 >You'll need three pieces of information:
 
@@ -20,8 +20,11 @@ n = loan duration in months
 
 Hints:
 
->Figure out what format your inputs need to be in. For example, should the interest rate be expressed as 5 or .05, if you mean 5% interest?
->If you're working with Annual Percentage Rate (APR), you'll need to convert that to a monthly interest rate.
+>Figure out what format your inputs need to be in.
+>For example, should the interest rate be expressed as 5 or .05,
+if you mean 5% interest?
+>If you're working with Annual Percentage Rate (APR),
+you'll need to convert that to a monthly interest rate.
 >Be careful about the loan duration -- are you working with months or years? >
 >Choose variable names carefully to assist in remembering.
 
@@ -48,7 +51,7 @@ def to_float_or_to_integer?(num)
   elsif float?(num)
     num.to_f
   end
-end 
+end
 
 loan_amount = ''
 apr = ''
@@ -97,7 +100,8 @@ loop do
   prompt("--------------------------------")
   prompt("")
 
-  monthly_payment = loan_amount * (monthly_interest_rate / (1 - (1 + monthly_interest_rate) ** (-loan_duration_in_months)))
+  monthly_payment = loan_amount * (monthly_interest_rate / \
+    (1 - (1 + monthly_interest_rate)**(-loan_duration_in_months)))
 
   prompt("Your monthly loan payments are: $#{monthly_payment}")
   prompt("")
@@ -110,7 +114,3 @@ end
 
 prompt("Thanks for using the Loan Calculator!")
 prompt("")
-
-
-
-
