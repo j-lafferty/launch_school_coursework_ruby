@@ -56,6 +56,8 @@ loan_duration = ''
 
 prompt("Welcome to the Loan Calculator!")
 prompt("Follow the prompts to find your monthly payments")
+prompt("------------------------------------------------")
+prompt("")
 
 loop do
   loop do
@@ -67,7 +69,7 @@ loop do
   end
 
   loop do
-    puts "=> Please enter your Annual Percentage Rate (APR):"
+    prompt("Please enter your Annual Percentage Rate (APR):")
     apr = gets.chomp
 
     break if valid_number?(apr)
@@ -75,7 +77,7 @@ loop do
   end
 
   loop do
-    puts "=> Please enter the loan duration:"
+    prompt("Please enter the loan duration:")
     loan_duration = gets.chomp
 
     break if valid_number?(loan_duration)
