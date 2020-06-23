@@ -54,6 +54,9 @@ loan_amount = ''
 apr = ''
 loan_duration = ''
 
+monthly_interest_rate = apr / 12
+loan_duration_in_months = loan_duration / 12
+
 prompt("Welcome to the Loan Calculator!")
 prompt("Follow the prompts to find your monthly payments")
 prompt("------------------------------------------------")
@@ -77,7 +80,7 @@ loop do
   end
 
   loop do
-    prompt("Please enter the loan duration:")
+    prompt("Please enter the loan duration in years:")
     loan_duration = gets.chomp
 
     break if valid_number?(loan_duration)
