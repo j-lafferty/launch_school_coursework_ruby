@@ -53,12 +53,9 @@ def to_float_or_to_integer?(num)
   end
 end
 
-loan_amount = ''
-apr = ''
-loan_duration = ''
-
-monthly_interest_rate = apr / 12
-loan_duration_in_months = loan_duration / 12
+loan_amount = nil
+apr = nil
+loan_duration = nil
 
 prompt("Welcome to the Loan Calculator!")
 prompt("Follow the prompts to find your monthly payments")
@@ -78,13 +75,12 @@ loop do
 
   loop do
     prompt("Please enter your Annual Percentage Rate (APR):")
+    prompt("Example: 5 for 5% or 2.5 for 2.5%")
     apr = gets.chomp
 
     break if valid_number?(apr)
     prompt("Hmm... that doesn't look like a valid number.")
   end
-
-  apr = to_float_or_to_integer?(apr)
 
   loop do
     prompt("Please enter the loan duration in years:")
@@ -100,10 +96,14 @@ loop do
   prompt("--------------------------------")
   prompt("")
 
+  apr = apr.to_f / 100
+  monthly_interest_rate = (apr / 12)
+  loan_duration_in_months = (loan_duration * 12)
+
   monthly_payment = loan_amount * (monthly_interest_rate / \
     (1 - (1 + monthly_interest_rate)**(-loan_duration_in_months)))
 
-  prompt("Your monthly loan payments are: $#{monthly_payment}")
+  prompt("Your monthly loan payments are: $#{monthly_payment.round(2)}")
   prompt("")
   prompt("Would you like to perform another calculation?")
   prompt("Press 'Y' to calculate again.")
