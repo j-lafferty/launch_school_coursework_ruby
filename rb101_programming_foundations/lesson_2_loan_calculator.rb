@@ -71,6 +71,8 @@ loop do
     prompt("Hmm... that doesn't look like a valid number.")
   end
 
+  loan_amount = to_float_or_to_integer?(loan_amount)
+
   loop do
     prompt("Please enter your Annual Percentage Rate (APR):")
     apr = gets.chomp
@@ -79,6 +81,8 @@ loop do
     prompt("Hmm... that doesn't look like a valid number.")
   end
 
+  apr = to_float_or_to_integer?(apr)
+
   loop do
     prompt("Please enter the loan duration in years:")
     loan_duration = gets.chomp
@@ -86,6 +90,9 @@ loop do
     break if valid_number?(loan_duration)
     prompt("Hmm... that doesn't look like a valid number.")
   end
+
+  loan_duration = to_float_or_to_integer?(loan_duration)
+  
 end
 
 
