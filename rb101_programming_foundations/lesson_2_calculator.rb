@@ -20,9 +20,9 @@ def float?(num)
 end
 
 def to_float_or_to_integer?(num)
-  if num.to_i.to_s == num
+  if integer?(num)
     num.to_i
-  elsif num.to_f.to_s == num
+  elsif float?(num)
     num.to_f
   end
 end 
