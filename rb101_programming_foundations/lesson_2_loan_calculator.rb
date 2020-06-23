@@ -92,10 +92,24 @@ loop do
   end
 
   loan_duration = to_float_or_to_integer?(loan_duration)
-  
+
+  prompt("Calculating monthly payments....")
+  prompt("--------------------------------")
+  prompt("")
+
+  monthly_payment = loan_amount * (monthly_interest_rate / (1 - (1 + monthly_interest_rate) ** (-loan_duration_in_months)))
+
+  prompt("Your monthly loan payments are: $#{monthly_payment}")
+  prompt("")
+  prompt("Would you like to perform another calculation?")
+  prompt("Press 'Y' to calculate again.")
+  prompt("Press 'N' to cancle.")
+  answer = gets.chomp
+  break unless answer.downcase.start_with?('y')
 end
 
-
+prompt("Thanks for using the Loan Calculator!")
+prompt("")
 
 
 
