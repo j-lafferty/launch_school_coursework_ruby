@@ -27,3 +27,58 @@ Hints:
 
 =end
 
+def valid_number?(num)
+  integer?(num) || float?(num)
+end
+
+def integer?(num)
+  num.to_i.to_s == num
+end
+
+def float?(num)
+  num.to_f.to_s == num
+end
+
+def to_float_or_to_integer?(num)
+  if integer?(num)
+    num.to_i
+  elsif float?(num)
+    num.to_f
+  end
+end 
+
+loan_amount = ''
+apr = ''
+loan_duration = ''
+
+loop do
+  loop do
+    puts "=> Please enter the loan amount:"
+    loan_amount = gets.chomp
+
+    break if valid_number?(loan_amount)
+    prompt("Hmm... that doesn't look like a valid number.")
+  end
+
+  loop do
+    puts "=> Please enter your Annual Percentage Rate (APR):"
+    apr = gets.chomp
+
+    break if valid_number?(apr)
+    prompt("Hmm... that doesn't look like a valid number.")
+  end
+
+  loop do
+    puts "=> Please enter the loan duration:"
+    loan_duration = gets.chomp
+
+    break if valid_number?(loan_duration)
+    prompt("Hmm... that doesn't look like a valid number.")
+  end
+end
+
+
+
+
+
+
