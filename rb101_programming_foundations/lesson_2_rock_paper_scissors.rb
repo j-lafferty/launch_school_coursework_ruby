@@ -1,5 +1,6 @@
-=begin 
-In this assignment, we'll build a Rock Paper Scissors game. The game flow should go like this:
+=begin
+In this assignment, we'll build a Rock Paper Scissors game.
+The game flow should go like this:
 
 the user makes a choice
 the computer makes a choice
@@ -13,14 +14,14 @@ def prompt(message)
 end
 
 def player_wins?(player, computer)
-  return true if 
+  return true if
     (player == VALID_CHOICES[0] && computer == VALID_CHOICES[2]) ||
     (player == VALID_CHOICES[1] && computer == VALID_CHOICES[0]) ||
     (player == VALID_CHOICES[2] && computer == VALID_CHOICES[1])
 end
 
 def computer_wins?(player, computer)
-  return true if 
+  return true if
     (player == VALID_CHOICES[0] && computer == VALID_CHOICES[1]) ||
     (player == VALID_CHOICES[1] && computer == VALID_CHOICES[2]) ||
     (player == VALID_CHOICES[2] && computer == VALID_CHOICES[0])
