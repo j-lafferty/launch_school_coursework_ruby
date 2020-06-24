@@ -12,6 +12,30 @@ def prompt(message)
   puts("=> #{message}")
 end
 
+def player_wins?(choice, computer_choice)
+  return true if 
+    (choice == VALID_CHOICES[0] && computer_choice == VALID_CHOICES[2]) ||
+    (choice == VALID_CHOICES[1] && computer_choice == VALID_CHOICES[0]) ||
+    (choice == VALID_CHOICES[2] && computer_choice == VALID_CHOICES[1])
+end
+
+def computer_wins?(choice, computer_choice)
+  return true if 
+    (choice == VALID_CHOICES[0] && computer_choice == VALID_CHOICES[1]) ||
+    (choice == VALID_CHOICES[1] && computer_choice == VALID_CHOICES[2]) ||
+    (choice == VALID_CHOICES[2] && computer_choice == VALID_CHOICES[0])
+end
+
+def round(choice, computer_choice)
+  if player_wins?(choice, computer_choice)
+    prompt("You win!")
+  elsif computer_wins?(choice, computer_choice)
+    prompt("Computer wins!")
+  else
+    prompt("It's a tie!")
+  end
+end
+
 choice = ''
 
 loop do
@@ -22,6 +46,8 @@ loop do
   prompt("That's not a valid choice!")
 end
 
-
 computer_choice = VALID_CHOICES.sample
 
+prompt("You chose #{choice}; Computer chose #{computer_choice}")
+
+round(choice, computer_choice)
