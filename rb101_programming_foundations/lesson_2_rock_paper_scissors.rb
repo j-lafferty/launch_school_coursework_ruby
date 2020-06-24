@@ -36,18 +36,31 @@ def round(choice, computer_choice)
   end
 end
 
-choice = ''
-
 loop do
-  prompt("Choose one: #{VALID_CHOICES.join(', ')}")
-  choice = gets.chomp
+  choice = ''
 
-  break if VALID_CHOICES.include?(choice)
-  prompt("That's not a valid choice!")
+  loop do
+    prompt("Choose one: #{VALID_CHOICES.join(', ')}")
+    choice = gets.chomp
+
+    break if VALID_CHOICES.include?(choice)
+    prompt("That's not a valid choice!")
+  end
+
+  computer_choice = VALID_CHOICES.sample
+
+  prompt("")
+  prompt("You chose #{choice}; Computer chose #{computer_choice}")
+
+  round(choice, computer_choice)
+
+  prompt("")
+  prompt("Play another round?")
+  prompt("Type: Yes or No")
+  answer = gets.chomp
+  break unless answer.downcase.start_with?('y')
 end
 
-computer_choice = VALID_CHOICES.sample
-
-prompt("You chose #{choice}; Computer chose #{computer_choice}")
-
-round(choice, computer_choice)
+prompt("")
+prompt("Thank you for playing.")
+prompt("Good bye!")
