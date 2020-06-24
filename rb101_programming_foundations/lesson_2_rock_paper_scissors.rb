@@ -18,8 +18,21 @@ WIN_STATES = {
   spock: ['rock', 'scissors']
 }
 
+VALID_INPUT = {
+  rock: ['rock', 'r'],
+  paper: ['paper', 'p'],
+  scissors: ['scissors', 'sc'],
+  lizard: ['lizard', 'l'],
+  spock: ['spock', 'sp']
+}
+
 def prompt(message)
   puts("=> #{message}")
+end
+
+# standardizes user input to match VALID_CHOICES
+def standardize_input(input)
+  VALID_INPUT.find { |_, v| v.include?(input) }.first.to_s
 end
 
 # checks if first input beats second input
@@ -43,8 +56,11 @@ loop do
   choice = ''
 
   loop do
-    prompt("Choose one: #{VALID_CHOICES.join(', ')}")
+    prompt("Choose one: #{VALID_CHOICES.join(', ')}\n\
+    Abbreviate: 'sp' for spock, 'sc' for scissors, 'r' for rock, etc.")
     choice = gets.chomp
+
+    choice = standardize_input(choice)
 
     break if VALID_CHOICES.include?(choice)
     prompt("That's not a valid choice!")
