@@ -12,6 +12,8 @@ def prompt(message)
   puts("=> #{message}")
 end
 
+choice = ''
+
 loop do
   prompt("Choose one: #{VALID_CHOICES.join(', ')}")
   choice = gets.chomp
