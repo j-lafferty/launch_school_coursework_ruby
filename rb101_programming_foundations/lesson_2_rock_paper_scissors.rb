@@ -9,17 +9,23 @@ the winner is displayed
 
 VALID_CHOICES = %w(rock paper scissors)
 
+# key wins agains value pairs
+WIN_STATES = {
+  rock: ['scissors'],
+  paper: ['rock'],
+  scissors: ['paper']
+}
+
 def prompt(message)
   puts("=> #{message}")
 end
 
+# checks if first input beats second input
 def win?(first, second)
-  return true if
-    (first == VALID_CHOICES[0] && second == VALID_CHOICES[2]) ||
-    (first == VALID_CHOICES[1] && second == VALID_CHOICES[0]) ||
-    (first == VALID_CHOICES[2] && second == VALID_CHOICES[1])
+  WIN_STATES[first.to_sym].include?(second)
 end
 
+# game round logic
 def round(player, computer)
   if win?(player, computer)
     prompt("You win!")
@@ -30,6 +36,7 @@ def round(player, computer)
   end
 end
 
+# main game loop
 loop do
   choice = ''
 
