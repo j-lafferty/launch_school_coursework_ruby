@@ -12,18 +12,18 @@ def prompt(message)
   puts("=> #{message}")
 end
 
-def player_wins?(choice, computer_choice)
+def player_wins?(player, computer)
   return true if 
-    (choice == VALID_CHOICES[0] && computer_choice == VALID_CHOICES[2]) ||
-    (choice == VALID_CHOICES[1] && computer_choice == VALID_CHOICES[0]) ||
-    (choice == VALID_CHOICES[2] && computer_choice == VALID_CHOICES[1])
+    (player == VALID_CHOICES[0] && computer == VALID_CHOICES[2]) ||
+    (player == VALID_CHOICES[1] && computer == VALID_CHOICES[0]) ||
+    (player == VALID_CHOICES[2] && computer == VALID_CHOICES[1])
 end
 
-def computer_wins?(choice, computer_choice)
+def computer_wins?(player, computer)
   return true if 
-    (choice == VALID_CHOICES[0] && computer_choice == VALID_CHOICES[1]) ||
-    (choice == VALID_CHOICES[1] && computer_choice == VALID_CHOICES[2]) ||
-    (choice == VALID_CHOICES[2] && computer_choice == VALID_CHOICES[0])
+    (player == VALID_CHOICES[0] && computer == VALID_CHOICES[1]) ||
+    (player == VALID_CHOICES[1] && computer == VALID_CHOICES[2]) ||
+    (player == VALID_CHOICES[2] && computer == VALID_CHOICES[0])
 end
 
 def round(choice, computer_choice)
