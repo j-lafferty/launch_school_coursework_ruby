@@ -12,8 +12,14 @@ def prompt(message)
   puts("=> #{message}")
 end
 
-prompt("Choose one: #{VALID_CHOICES.join(', ')}")
-choice = gets.chomp
+loop do
+  prompt("Choose one: #{VALID_CHOICES.join(', ')}")
+  choice = gets.chomp
+
+  break if VALID_CHOICES.include?(choice)
+  prompt("That's not a valid choice!")
+end
+
 
 computer_choice = VALID_CHOICES.sample
 
