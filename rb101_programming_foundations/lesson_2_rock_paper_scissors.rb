@@ -7,13 +7,15 @@ the computer makes a choice
 the winner is displayed
 =end
 
-VALID_CHOICES = %w(rock paper scissors)
+VALID_CHOICES = %w(rock paper scissors lizard spock)
 
 # key wins agains value pairs
 WIN_STATES = {
-  rock: ['scissors'],
-  paper: ['rock'],
-  scissors: ['paper']
+  rock: ['scissors', 'lizard'],
+  paper: ['rock', 'spock'],
+  scissors: ['paper', 'lizard'],
+  lizard: ['paper', 'spock'],
+  spock: ['rock', 'scissors']
 }
 
 def prompt(message)
