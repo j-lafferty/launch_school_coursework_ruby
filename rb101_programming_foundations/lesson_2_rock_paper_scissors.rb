@@ -7,30 +7,23 @@ the computer makes a choice
 the winner is displayed
 =end
 
-VALID_CHOICES = ['rock', 'paper', 'scissors']
+VALID_CHOICES = %w(rock paper scissors)
 
 def prompt(message)
   puts("=> #{message}")
 end
 
-def player_wins?(player, computer)
+def win?(first, second)
   return true if
-    (player == VALID_CHOICES[0] && computer == VALID_CHOICES[2]) ||
-    (player == VALID_CHOICES[1] && computer == VALID_CHOICES[0]) ||
-    (player == VALID_CHOICES[2] && computer == VALID_CHOICES[1])
+    (first == VALID_CHOICES[0] && second == VALID_CHOICES[2]) ||
+    (first == VALID_CHOICES[1] && second == VALID_CHOICES[0]) ||
+    (first == VALID_CHOICES[2] && second == VALID_CHOICES[1])
 end
 
-def computer_wins?(player, computer)
-  return true if
-    (player == VALID_CHOICES[0] && computer == VALID_CHOICES[1]) ||
-    (player == VALID_CHOICES[1] && computer == VALID_CHOICES[2]) ||
-    (player == VALID_CHOICES[2] && computer == VALID_CHOICES[0])
-end
-
-def round(choice, computer_choice)
-  if player_wins?(choice, computer_choice)
+def round(player, computer)
+  if win?(player, computer)
     prompt("You win!")
-  elsif computer_wins?(choice, computer_choice)
+  elsif win?(computer, player)
     prompt("Computer wins!")
   else
     prompt("It's a tie!")
