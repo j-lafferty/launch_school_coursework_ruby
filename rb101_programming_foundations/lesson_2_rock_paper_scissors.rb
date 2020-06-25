@@ -72,7 +72,7 @@ loop do
   loop do
     prompt("Choose one: #{VALID_CHOICES.join(', ')}\n\
     Abbreviate: 'sp' for spock, 'sc' for scissors, 'r' for rock, etc.")
-    player_choice = gets.chomp
+    player_choice = gets.chomp.downcase
 
     player_choice = standardize_input(player_choice)
 
