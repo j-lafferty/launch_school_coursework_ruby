@@ -10,3 +10,18 @@
 # palindrome_substrings("abcddcbA") == ["bcddcb", "cddc", "dd"]
 # palindrome_substrings("palindrome") == []
 # palindrome_substrings("") == []
+
+# Understanding the PROBLEM
+# Some questions you might have?
+# 1. What is a substring?
+# 2. What is a palindrome?
+# 3. Will inputs always be strings?
+# 4. What does it mean to treat palindrome words case-sensitively?
+
+# input: string
+# output: an array of substrings
+# rules:
+#      Explicit requirements:
+#        - return only substrings which are palindromes.
+#        - palindrome words should be case sensitive, meaning "abBA"
+#          is not a palindrome.
