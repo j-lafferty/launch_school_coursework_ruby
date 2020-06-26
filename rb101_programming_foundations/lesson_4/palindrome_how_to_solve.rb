@@ -35,3 +35,21 @@
 #    array
 #  - return the result array
 
+# ALGORITHM:
+# - create an empty array called `result` that will contain all
+#   the required substrings
+# - initialize variable start_substring_idx and assign 0 to it.
+# - initialize variable end_substring_idx and assign value of
+#   start_substring_idx + 1 to it.
+# - Enter loop which will break when start_substring_idx is equal
+#     to str.size
+#   - Within that loop enter another loop that will break if
+#     end_substring_idx is equal to str.size
+#     - append to the result array part of the string from
+#       start_substring_idx to end_substring_idx
+#     - increment `end_substring_idx` by 1.
+#   - end the inner loop
+#   - increment `start_substring_idx` by 1.
+#   - reassign `end_substring_idx` to `start_substring_idx += 1`
+# - end outer loop
+# - return `result` array
