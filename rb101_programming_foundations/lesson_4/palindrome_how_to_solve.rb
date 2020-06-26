@@ -25,3 +25,13 @@
 #        - return only substrings which are palindromes.
 #        - palindrome words should be case sensitive, meaning "abBA"
 #          is not a palindrome.
+
+# APPROACH to the PROBLEM
+#  - initialize a result variable to an empty array
+#  - create an array named substring_arr that contains all of the
+#    substrings of the input string that are at least 2 characters long.
+#  - loop through the words in the substring_arr array.
+#  - if the word is a palindrome, append it to the result
+#    array
+#  - return the result array
+
