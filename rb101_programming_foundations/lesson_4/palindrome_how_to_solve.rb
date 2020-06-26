@@ -93,3 +93,14 @@ end
 #    - if the word is a palindrome, append it to the result
 #      array
 #  - return the result array
+
+def palindrome_substrings(str)
+  result = []
+  substring_arr = substrings(str)
+
+  substring_arr.each do |substring|
+    arr << substring if is_palindrome?(substring)
+  end
+
+  result
+end
