@@ -72,3 +72,12 @@ def substrings(str)
 
   result
 end
+
+# Check if string is palindrome
+# - Inside the `is_palindrome?` method, check whether the string
+#   value is equal to its reversed value. You can use the
+#   String#reverse method.
+
+def is_palindrome?(str)
+  str == str.reverse
+end
