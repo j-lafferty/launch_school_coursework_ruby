@@ -1,3 +1,5 @@
+require 'pry'
+
 INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
@@ -29,6 +31,7 @@ def initialise_board
 end
 
 def empty_squares(brd)
+  # binding.pry
   brd.keys.select { |num| brd[num] == INITIAL_MARKER }
 end
 
@@ -42,7 +45,7 @@ def player_places_piece(brd)
 
     prompt "Sorry, that's not a valid choice."
   end
-  
+  # binding.pry
   brd[square] = PLAYER_MARKER
 end
 
