@@ -38,40 +38,32 @@
 # ALGORITHM:
 #  substrings method
 #  =================
-#  - create an empty array called `result` which will contain all
-#    the required substrings
-#  - initialize variable start_substring_idx and assign 0 to it.
-#  - initialize variable end_substring_idx and assign value of
-#    start_substring_idx + 1 to it.
-#  - Enter loop which will break when start_substring_idx is equal
-#      to str.size
-#    - Within that loop enter another loop which will break if
-#      end_substring_idx is equal to str.size
-#      - append to the result array part of the string from
-#        start_substring_idx to end_substring_idx
-#      - increment `end_substring_idx` by 1.
-#    - end the inner loop
-#    - increment `start_substring_idx` by 1.
-#    - reassign `end_substring_idx` to `start_substring_idx += 1`
-#  - end outer loop
-#  - return `result` array
+# - create an empty array called `result` that will contain all required substrings
+# - create a `starting_index` variable (value `0`) for the starting index of a substring
+# - start a loop that iterates over `starting_index` from `0` to the length of the string minus 2
+#   - create a `num_chars` variable (value `2`) for the length of a substring
+#   - start an inner loop that iterates over `num_chars` from `2` to `string.length - starting_index`
+#     - extract a substring of length `num_chars` from `string` starting at `starting_index`
+#     - append the extracted substring to the `result` array
+#     - increment the `num_chars` variable by `1`
+#   - end the inner loop
+#   - increment the `starting_index` variable by `1`
+# - end the outer loop
+# - return the `result` array
 
 def substrings(str)
   result = []
-  start_substring_idx = 0
-  end_substring_idx = start_substring_idx + 1
+  starting_index = 0;
 
-  loop do
-    break if start_substring_idx == str.size
-    loop do
-      break if end_substring_idx == str.size
-      result << str[start_substring_idx..end_substring_idx]
-      end_substring_idx += 1
+  while (starting_index <= str.length - 2)
+    num_chars = 2
+    while (num_chars <= str.length - starting_index)
+      substring = str.slice(starting_index, num_chars)
+      result << substring
+      num_chars += 1
     end
-    start_substring_idx += 1
-    end_substring_idx += 1
+    starting_index += 1
   end
-
   result
 end
 
@@ -99,8 +91,15 @@ def palindrome_substrings(str)
   substring_arr = substrings(str)
 
   substring_arr.each do |substring|
-    arr << substring if is_palindrome?(substring)
+    result << substring if is_palindrome?(substring)
   end
 
   result
 end
+
+puts "Enter word: "
+input = gets.chomp
+
+puts ''
+puts "Palindrome Results: "
+puts palindrome_substrings(input)
