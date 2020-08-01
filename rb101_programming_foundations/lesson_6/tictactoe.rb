@@ -114,9 +114,9 @@ def detect_winner(brd)
     #       brd[line[2]] == COMPUTER_MARKER
     #   return 'Computer'
     # end
-    if brd.values_at(*line).count('X') == 3
+    if brd.values_at(*line).count(PLAYER_MARKER) == 3
       return 'Player'
-    elsif brd.values_at(*line).count('O') == 3
+    elsif brd.values_at(*line).count(COMPUTER_MARKER) == 3
       return 'Computer'
     end
   end
