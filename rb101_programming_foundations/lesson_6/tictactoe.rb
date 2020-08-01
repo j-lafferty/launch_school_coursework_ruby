@@ -6,6 +6,9 @@ WINNING_LINES = [[1, 2, 3], [4, 5, 6], [7, 8, 9]] + # rows
 INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
+FIRST_MOVE_VALID_CHOICES = %w(player computer)
+
+first_move = 'choose'
 
 scores = {
   player: 0,
@@ -145,20 +148,56 @@ def update_score(brd, scores)
   scores[:computer] += 1  if detect_winner(brd) == 'Computer'
 end
 
-loop do
-  board = initialise_board
-
+def player_first(board)
   loop do
     display_board(board)
 
     player_places_piece(board)
     break if someone_won?(board) || board_full?(board)
 
+    display_board(board)
     computer_places_piece(board)
 
     # binding.pry
     break if someone_won?(board) || board_full?(board)
   end
+end
+
+def computer_first(board)
+  loop do
+    display_board(board)
+
+    computer_places_piece(board)
+    break if someone_won?(board) || board_full?(board)
+
+    display_board(board)
+    player_places_piece(board)
+
+    # binding.pry
+    break if someone_won?(board) || board_full?(board)
+  end
+end
+
+def game(starter, board)
+  case starter
+  when 'player' then player_first(board)
+  when 'computer' then computer_first(board)
+  end
+end
+
+loop do
+  board = initialise_board
+
+  while true do
+    prompt "Who goes first? (player or computer)"
+    first_move = gets.chomp.downcase
+
+    break if FIRST_MOVE_VALID_CHOICES.include?(first_move)
+
+    prompt "Sorry, that's not a valid choice."
+  end
+
+  game(first_move, board)
 
   display_board(board)
 
