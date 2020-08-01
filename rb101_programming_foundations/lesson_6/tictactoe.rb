@@ -7,6 +7,11 @@ INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
 
+scores = {
+  player: 0,
+  computer: 0
+}
+
 def prompt(msg)
   puts "=> #{msg}"
 end
@@ -101,6 +106,12 @@ def detect_winner(brd)
   nil
 end
 
+# update player and computer score
+def update_score(brd, scores)
+  scores[:player] += 1 if detect_winner(brd) == 'Player'
+  scores[:computer] += 1  if detect_winner(brd) == 'Computer'
+end
+
 loop do
   board = initialise_board
 
@@ -119,11 +130,15 @@ loop do
   display_board(board)
 
   if someone_won?(board)
+    update_score(board, scores)
     prompt "#{detect_winner(board)} won!"
   else
     prompt "It's a tie!"
   end
 
+  prompt("")
+  prompt("Player score: #{scores[:player]}; Computer score: #{scores[:computer]}")
+  prompt("")
   prompt "Play again? (y or n)"
   answer = gets.chomp
   break unless answer.downcase.start_with?('y')
