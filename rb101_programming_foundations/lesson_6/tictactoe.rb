@@ -7,6 +7,10 @@ INITIAL_MARKER = ' '
 PLAYER_MARKER = 'X'
 COMPUTER_MARKER = 'O'
 FIRST_MOVE_VALID_CHOICES = %w(player computer)
+VALID_INPUT = {
+  player: ['player', 'p', 'pla', 'play'],
+  computer: ['computer', 'c', 'comp']
+}
 
 first_move = 'choose'
 
@@ -17,6 +21,11 @@ scores = {
 
 def prompt(msg)
   puts "=> #{msg}"
+end
+
+# standardizes user input to match FIRST_MOVE_VALID_CHOICES
+def standardize_input(input)
+  VALID_INPUT.find { |_, v| v.include?(input) }.first.to_s
 end
 
 # rubocop:disable Metrics/AbcSize
@@ -191,6 +200,7 @@ loop do
   while true do
     prompt "Who goes first? (player or computer)"
     first_move = gets.chomp.downcase
+    first_move = standardize_input(first_move)
 
     break if FIRST_MOVE_VALID_CHOICES.include?(first_move)
 
