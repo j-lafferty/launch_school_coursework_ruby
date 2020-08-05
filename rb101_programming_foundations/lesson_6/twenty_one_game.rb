@@ -24,6 +24,7 @@ def draw_card(cards, deck)
     card_value = card_suit[1].sample
 
     card_drawn = [card_suit[0], card_value]
+    cards << card_drawn
 end
 
 def card_drawn_msg(str, cards)
@@ -40,7 +41,7 @@ def total(cards)
 
     sum = 0
     values.each do |value|
-        if value == 'A'
+        if value == 'Ace'
             sum += 11
         elsif value.to_i == 0 # for face value cards
             sum += 10
@@ -50,7 +51,7 @@ def total(cards)
     end
 
     # set Ace to equal 1 if bust when Ace set to 11
-    values.select { |value| value == 'A' }.count.times do
+    values.select { |value| value == 'Ace' }.count.times do
         sum -= 10 if sum > 21
     end
     
@@ -61,42 +62,88 @@ def busted?(cards)
     total(cards) > 21
 end
 
-def player_play
+def player_play(player, deck)
     loop do
         puts "Hit or Stay?"
         answer = gets.chomp.downcase
         
-        draw_card(player_cards, DECK) if answer == 'hit'
+        draw_card(player, deck) if answer == 'hit'
 
-        break if answer == 'stay' || busted?(player_cards)
+        break if answer == 'stay' || busted?(player)
 
         puts "Player chose hit!"
-        card_drawn_msg('Player', player_cards)
+        card_drawn_msg('Player', player)
     end
     
-    if busted?
+    if busted?(player)
         puts "Player chose hit!"
         puts "Player bust!"
-        card_drawn_msg('Player', player_cards)
+        card_drawn_msg('Player', player)
     else
         puts "Player chose stay!"
     end
 end
 
-def dealer_play
+def dealer_play(dealer, deck)
     loop do
-        break if total(dealer_cards) >= 17 || busted?(dealer_cards, DECK)
+        break if total(dealer) >= 17 || busted?(dealer)
 
-        draw_card(dealer_cards, DECK)
+        draw_card(dealer, deck)
 
         puts "Dealer chose hit!"
-        card_drawn_msg('Dealer', dealer_cards[1, (dealer_cards.length - 1)])
+        card_drawn_msg('Dealer', dealer[1, (dealer.length - 1)])
     end
     
-    if busted?
+    if busted?(dealer)
         puts "Dealer bust!"
-        puts "Dealer has: #{total(cards)}."
+        puts "Dealer has: #{total(dealer)}."
     else
         puts "Dealer chose stay!"
     end
 end
+
+def deal_first_cards(player, dealer, deck)
+    2.times { draw_card(player, deck) }
+    puts "Player has: #{player[0][1]} and #{player[1][1]}."
+    
+    2.times { draw_card(dealer, deck) }
+    puts "Dealer has: #{dealer[0][1]} and an Unknown card."
+end
+
+def winner?(player, dealer)
+    if total(player) > total(dealer)
+        puts "Player wins!"
+    elsif total(player) < total(dealer)
+        puts "Dealer wins!"
+    elsif total(player) == total(dealer)
+        puts "It's a draw!"
+    end
+end
+
+def clear_game(player, dealer)
+    player.clear
+    dealer.clear
+end
+
+def game_play(player, dealer, deck)
+    loop do
+        loop do
+            clear_game(player, dealer)
+            deal_first_cards(player, dealer, deck)
+            player_play(player, deck)
+            break if busted?(player)
+
+            dealer_play(dealer, deck)
+            break if busted?(dealer)
+
+            break if winner?(player, dealer)
+        end
+
+        puts "Would you like to play again? (Y or N)"
+        answer = gets.chomp.downcase
+
+        break if answer == 'n'
+    end
+end
+
+game_play(player_cards, dealer_cards, DECK)
