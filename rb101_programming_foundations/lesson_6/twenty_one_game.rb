@@ -24,8 +24,11 @@ def draw_card(deck)
 end
 
 def card_drawn_msg(str, cards)
-    puts "#{str} drew #{cards.last[1]} of #{cards.last[0].to_s.capitalize}"
-    puts "#{str} has #{total(cards)}."
+    puts "#{str} drew: #{cards.last[1]} of #{cards.last[0].to_s.capitalize}"
+    case str
+    when 'Player' then puts "#{str} has: #{total(cards)}."
+    when 'Dealer' then puts "#{str} has: #{total(cards)} and an unknown card."
+    end
     puts ""
 end
 
@@ -63,14 +66,30 @@ def player_play
         
         break if answer == "Stay" || busted?(player_cards, DECK)
 
-        puts "You chose hit!"
+        puts "Player chose hit!"
         card_drawn_msg('Player', player_cards)
     end
     
     if busted?
         card_drawn_msg('Player', player_cards) 
-        puts "You bust!"
+        puts "Player bust!"
     else
-        puts "You chose stay!"
+        puts "Player chose stay!"
+    end
+end
+
+def dealer_play
+    loop do
+        break if total(dealer_cards) >= 17 || busted?(dealer_cards, DECK)
+
+        puts "Dealer chose hit!"
+        card_drawn_msg('Dealer', dealer_cards[1, (dealer_cards.length - 1)])
+    end
+    
+    if busted?
+        card_drawn_msg('Dealer', dealer_cards) 
+        puts "Dealer bust!"
+    else
+        puts "Dealer chose stay!"
     end
 end
