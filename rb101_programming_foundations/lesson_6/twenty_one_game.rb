@@ -16,8 +16,8 @@ DECK = {
     clubs: %w(2 3 4 5 6 7 8 9 10 Jack Queen King Ace)
 }
 
-player = []
-dealer = []
+player_cards = []
+dealer_cards = []
 
 def integer?(num)
     num.to_i.to_s == num
