@@ -16,9 +16,23 @@ DECK = {
     clubs: %w(2 3 4 5 6 7 8 9 10 Jack Queen King Ace)
 }
 
-player_cards = []
-dealer_cards = []
+player_cards = {}
+dealer_cards = {}
 
-def integer?(num)
-    num.to_i.to_s == num
+def total(cards)
+    values = cards.map { |_, v| v }
+
+    sum = 0
+    values.each do |value|
+        if value == 'A'
+            sum += 11
+        elsif value.to_i == 0
+            sum += 10
+        else
+            sum += value.to_i
+        end
+    end
+
+    values.select { |value| value == 'A' }.count.times do
+        sum -= 10 if sum > 21
 end
