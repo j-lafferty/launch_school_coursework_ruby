@@ -16,8 +16,18 @@ DECK = {
     clubs: %w(2 3 4 5 6 7 8 9 10 Jack Queen King Ace)
 }
 
-player_cards = {}
-dealer_cards = {}
+player_cards = {
+    hearts: [],
+    diamonds: [],
+    spades: [],
+    clubs: []
+}
+dealer_cards = {
+    hearts: [],
+    diamonds: [],
+    spades: [],
+    clubs: []
+}
 
 def total(cards)
     values = cards.map { |_, v| v }
