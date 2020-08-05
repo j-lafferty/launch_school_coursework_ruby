@@ -16,22 +16,15 @@ DECK = {
     clubs: %w(2 3 4 5 6 7 8 9 10 Jack Queen King Ace)
 }
 
-player_cards = {
-    hearts: [],
-    diamonds: [],
-    spades: [],
-    clubs: []
-}
+player_cards = []
+dealer_cards = []
 
-dealer_cards = {
-    hearts: [],
-    diamonds: [],
-    spades: [],
-    clubs: []
-}
+def draw_card(deck)
+    deck.to_a.sample
+end
 
 def total(cards)
-    values = cards.map { |_, v| v }
+    values = cards.map { |card| card[1] }
 
     sum = 0
     values.each do |value|
@@ -47,8 +40,34 @@ def total(cards)
     # set Ace to equal 1 if bust when Ace set to 11
     values.select { |value| value == 'A' }.count.times do
         sum -= 10 if sum > 21
+    end
+    
+    sum
 end
 
-def busted?(cards)
+def busted?(cards, deck)
+    cards << draw_card(deck)
     total(cards) > 21
+end
+
+def player_play
+    loop do
+        puts "Hit or Stay?"
+        answer = gets.chomp
+        
+        break if answer == "Stay" || busted?(player_cards, DECK)
+
+        puts "You chose hit!"
+        puts "You drew #{player_cards.last[1]} of #{player_cards.last[0].to_s.capitalize}"
+        puts "You have #{total(player_cards)}."
+        puts ""
+    end
+    
+    if busted?
+        puts "You drew #{player_cards.last[1]} of #{player_cards.last[0].to_s.capitalize}"
+        puts "You have #{total(player_cards)}." 
+        puts "You bust!"
+    else
+        puts "You chose stay!"
+    end
 end
