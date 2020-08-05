@@ -23,6 +23,12 @@ def draw_card(deck)
     deck.to_a.sample
 end
 
+def card_drawn_msg(str, cards)
+    puts "#{str} drew #{cards.last[1]} of #{cards.last[0].to_s.capitalize}"
+    puts "#{str} has #{total(cards)}."
+    puts ""
+end
+
 def total(cards)
     values = cards.map { |card| card[1] }
 
@@ -58,14 +64,11 @@ def player_play
         break if answer == "Stay" || busted?(player_cards, DECK)
 
         puts "You chose hit!"
-        puts "You drew #{player_cards.last[1]} of #{player_cards.last[0].to_s.capitalize}"
-        puts "You have #{total(player_cards)}."
-        puts ""
+        card_drawn_msg('Player', player_cards)
     end
     
     if busted?
-        puts "You drew #{player_cards.last[1]} of #{player_cards.last[0].to_s.capitalize}"
-        puts "You have #{total(player_cards)}." 
+        card_drawn_msg('Player', player_cards) 
         puts "You bust!"
     else
         puts "You chose stay!"
