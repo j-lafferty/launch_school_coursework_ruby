@@ -48,3 +48,7 @@ def total(cards)
     values.select { |value| value == 'A' }.count.times do
         sum -= 10 if sum > 21
 end
+
+def busted?(cards)
+    total(cards) > 21
+end
