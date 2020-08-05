@@ -18,3 +18,7 @@ DECK = {
 
 player = []
 dealer = []
+
+def integer?(num)
+    num.to_i.to_s == num
+end
