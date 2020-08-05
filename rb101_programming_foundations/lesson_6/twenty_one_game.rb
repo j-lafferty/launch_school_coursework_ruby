@@ -22,6 +22,7 @@ player_cards = {
     spades: [],
     clubs: []
 }
+
 dealer_cards = {
     hearts: [],
     diamonds: [],
@@ -36,13 +37,14 @@ def total(cards)
     values.each do |value|
         if value == 'A'
             sum += 11
-        elsif value.to_i == 0
+        elsif value.to_i == 0 # for face value cards
             sum += 10
         else
             sum += value.to_i
         end
     end
 
+    # set Ace to equal 1 if bust when Ace set to 11
     values.select { |value| value == 'A' }.count.times do
         sum -= 10 if sum > 21
 end
