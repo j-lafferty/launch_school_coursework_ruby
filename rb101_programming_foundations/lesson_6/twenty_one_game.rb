@@ -19,8 +19,11 @@ DECK = {
 player_cards = []
 dealer_cards = []
 
-def draw_card(deck)
-    deck.to_a.sample
+def draw_card(cards, deck)
+    card_suit = deck.to_a.sample
+    card_value = card_suit[1].sample
+
+    card_drawn = [card_suit[0], card_value]
 end
 
 def card_drawn_msg(str, cards)
@@ -54,25 +57,27 @@ def total(cards)
     sum
 end
 
-def busted?(cards, deck)
-    cards << draw_card(deck)
+def busted?(cards)
     total(cards) > 21
 end
 
 def player_play
     loop do
         puts "Hit or Stay?"
-        answer = gets.chomp
+        answer = gets.chomp.downcase
         
-        break if answer == "Stay" || busted?(player_cards, DECK)
+        draw_card(player_cards, DECK) if answer == 'hit'
+
+        break if answer == 'stay' || busted?(player_cards)
 
         puts "Player chose hit!"
         card_drawn_msg('Player', player_cards)
     end
     
     if busted?
-        card_drawn_msg('Player', player_cards) 
+        puts "Player chose hit!"
         puts "Player bust!"
+        card_drawn_msg('Player', player_cards)
     else
         puts "Player chose stay!"
     end
@@ -82,13 +87,15 @@ def dealer_play
     loop do
         break if total(dealer_cards) >= 17 || busted?(dealer_cards, DECK)
 
+        draw_card(dealer_cards, DECK)
+
         puts "Dealer chose hit!"
         card_drawn_msg('Dealer', dealer_cards[1, (dealer_cards.length - 1)])
     end
     
     if busted?
-        card_drawn_msg('Dealer', dealer_cards) 
         puts "Dealer bust!"
+        puts "Dealer has: #{total(cards)}."
     else
         puts "Dealer chose stay!"
     end
