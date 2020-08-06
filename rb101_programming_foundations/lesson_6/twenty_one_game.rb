@@ -9,26 +9,19 @@
 # 6. If dealer bust, player wins.
 # 7. Compare cards and declare winner.
 
-DECK = {
-    hearts: %w(2 3 4 5 6 7 8 9 10 Jack Queen King Ace), 
-    diamonds: %w(2 3 4 5 6 7 8 9 10 Jack Queen King Ace), 
-    spades: %w(2 3 4 5 6 7 8 9 10 Jack Queen King Ace), 
-    clubs: %w(2 3 4 5 6 7 8 9 10 Jack Queen King Ace)
-}
+DECK_SUITS = %w(hearts diamonds spades clubs)
+DECK_VALUES = %w(2 3 4 5 6 7 8 9 10 Jack Queen King Ace)
 
-player_cards = []
-dealer_cards = []
+def initialize_deck
+    DECK_SUITS.product(DECK_VALUES).shuffle
+end
 
 def prompt(msg)
     puts "=> #{msg}"
 end
 
 def draw_card(cards, deck)
-    card_suit = deck.to_a.sample
-    card_value = card_suit[1].sample
-
-    card_drawn = [card_suit[0], card_value]
-    cards << card_drawn
+    cards << deck.pop
 end
 
 def card_drawn_msg(str, cards)
@@ -147,21 +140,29 @@ def clear_game(player, dealer)
     dealer.clear
 end
 
-def game_play(player, dealer, deck)
+def game_play
     loop do
-        loop do
-            clear_game(player, dealer)
-            deal_first_cards(player, dealer, deck)
-            break if player == 21 || dealer == 21
+        prompt "Welcome to Twenty-One!"
 
-            player_play(player, deck)
-            break if busted?(player)
+        # initialize vars
+        deck = initialize_deck
+        player_cards = []
+        dealer_cards = []
 
-            dealer_play(dealer, deck)
-            break if busted?(dealer)
+        # initial deal
+        deal_first_cards(player_cards, dealer_cards, deck)
 
-            winner = winner?(player, dealer)
-            display_winner(winner, player, dealer)
+        loop do            
+            break if player_cards == 21 || dealer_cards == 21
+
+            player_play(player_cards, deck)
+            break if busted?(player_cards)
+
+            dealer_play(dealer_cards, deck)
+            break if busted?(dealer_cards)
+
+            winner = winner?(player_cards, dealer_cards)
+            display_winner(winner, player_cards, dealer_cards)
             break
         end
 
@@ -173,4 +174,4 @@ def game_play(player, dealer, deck)
     end
 end
 
-game_play(player_cards, dealer_cards, DECK)
+game_play
