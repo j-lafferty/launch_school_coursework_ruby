@@ -20,17 +20,32 @@ def prompt(msg)
     puts "=> #{msg}"
 end
 
+def joinand(arr, delimiter=', ', word='and')
+    case arr.size
+    when 0 then ''
+    when 1 then arr.first
+    when 2 then arr.join(" #{word} ")
+    else
+      arr[-1] = "#{word} #{arr.last}"
+      arr.join(delimiter)
+    end
+end
+
 def draw_card(cards, deck)
     cards << deck.pop
 end
 
 def card_drawn_msg(str, cards)
-    prompt "#{str} drew: #{cards.last[1]} of #{cards.last[0].to_s.capitalize}"
+    prompt "#{str} drew: #{cards.last[1]} of #{cards.last[0].capitalize}"
     case str
     when 'Player' then prompt "#{str} has: #{total(cards)}."
     when 'Dealer' then prompt "#{str} has: #{total(cards)} and an unknown card."
     end
     puts ""
+end
+
+def show_hand(cards)
+    cards.map { |sub| "#{sub[1]} of #{sub[0].capitalize}"}
 end
 
 def total(cards)
@@ -117,7 +132,6 @@ def deal_first_cards(player, dealer, deck)
 end
 
 def winner?(player, dealer)
-    prompt "Player has: #{total(player)}; Dealer has: #{total(dealer)}"
     if total(player) > total(dealer)
         'Player'
     elsif total(player) < total(dealer)
@@ -128,6 +142,11 @@ def winner?(player, dealer)
 end
 
 def display_winner(winner, player, dealer)
+    puts ""
+    prompt "Player's hand: #{joinand(show_hand(player))}."
+    prompt "Dealer's hand: #{joinand(show_hand(dealer))}."
+    puts ""
+    prompt "Player has: #{total(player)}; Dealer has: #{total(dealer)}"
     case winner
     when 'Player' then prompt "Player wins with #{total(player)}!"
     when 'Dealer' then prompt "Dealer wins with #{total(dealer)}!"
@@ -152,9 +171,7 @@ def game_play
         # initial deal
         deal_first_cards(player_cards, dealer_cards, deck)
 
-        loop do            
-            break if player_cards == 21 || dealer_cards == 21
-
+        loop do
             player_play(player_cards, deck)
             break if busted?(player_cards)
 
