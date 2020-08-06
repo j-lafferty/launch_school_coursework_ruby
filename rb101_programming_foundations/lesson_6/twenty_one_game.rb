@@ -63,10 +63,12 @@ def busted?(cards)
 end
 
 def player_play(player, deck)
+    puts ""
     loop do
         puts "Hit or Stay?"
         answer = gets.chomp.downcase
-        
+        puts ""
+
         draw_card(player, deck) if answer == 'hit'
 
         break if answer == 'stay' || busted?(player)
@@ -77,14 +79,19 @@ def player_play(player, deck)
     
     if busted?(player)
         puts "Player chose hit!"
-        puts "Player bust!"
         card_drawn_msg('Player', player)
+        puts "Player bust!"
+        puts "Dealer wins!"
+        puts ""
     else
         puts "Player chose stay!"
+        puts ""
     end
 end
 
 def dealer_play(dealer, deck)
+    puts "Dealer has: #{dealer[1][1]} and an unknown card."
+    puts ""
     loop do
         break if total(dealer) >= 17 || busted?(dealer)
 
@@ -95,28 +102,36 @@ def dealer_play(dealer, deck)
     end
     
     if busted?(dealer)
-        puts "Dealer bust!"
         puts "Dealer has: #{total(dealer)}."
+        puts "Dealer bust!"
+        puts "Player wins!"
+        puts ""
     else
         puts "Dealer chose stay!"
+        puts ""
     end
 end
 
 def deal_first_cards(player, dealer, deck)
+    puts ""
     2.times { draw_card(player, deck) }
-    puts "Player has: #{player[0][1]} and #{player[1][1]}."
+    puts "Player has: #{player[0][1]} and #{player[1][1]}. Total of #{total(player)}."
     
     2.times { draw_card(dealer, deck) }
-    puts "Dealer has: #{dealer[0][1]} and an Unknown card."
+    puts "Dealer has: #{dealer[1][1]} and an unknown card."
 end
 
 def winner?(player, dealer)
+    puts "Player has: #{total(player)}; Dealer has: #{total(dealer)}"
     if total(player) > total(dealer)
-        puts "Player wins!"
+        puts "Player wins with #{total(player)}!"
+        puts ""
     elsif total(player) < total(dealer)
-        puts "Dealer wins!"
+        puts "Dealer wins with #{total(dealer)}!"
+        puts ""
     elsif total(player) == total(dealer)
         puts "It's a draw!"
+        puts ""
     end
 end
 
@@ -130,13 +145,16 @@ def game_play(player, dealer, deck)
         loop do
             clear_game(player, dealer)
             deal_first_cards(player, dealer, deck)
+            break if player == 21 || dealer == 21
+
             player_play(player, deck)
             break if busted?(player)
 
             dealer_play(dealer, deck)
             break if busted?(dealer)
 
-            break if winner?(player, dealer)
+            winner?(player, dealer)
+            break
         end
 
         puts "Would you like to play again? (Y or N)"
