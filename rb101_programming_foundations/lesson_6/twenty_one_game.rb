@@ -19,6 +19,10 @@ DECK = {
 player_cards = []
 dealer_cards = []
 
+def prompt(msg)
+    puts "=> #{msg}"
+end
+
 def draw_card(cards, deck)
     card_suit = deck.to_a.sample
     card_value = card_suit[1].sample
@@ -28,10 +32,10 @@ def draw_card(cards, deck)
 end
 
 def card_drawn_msg(str, cards)
-    puts "#{str} drew: #{cards.last[1]} of #{cards.last[0].to_s.capitalize}"
+    prompt "#{str} drew: #{cards.last[1]} of #{cards.last[0].to_s.capitalize}"
     case str
-    when 'Player' then puts "#{str} has: #{total(cards)}."
-    when 'Dealer' then puts "#{str} has: #{total(cards)} and an unknown card."
+    when 'Player' then prompt "#{str} has: #{total(cards)}."
+    when 'Dealer' then prompt "#{str} has: #{total(cards)} and an unknown card."
     end
     puts ""
 end
@@ -65,7 +69,7 @@ end
 def player_play(player, deck)
     puts ""
     loop do
-        puts "Hit or Stay?"
+        prompt "Hit or Stay?"
         answer = gets.chomp.downcase
         puts ""
 
@@ -73,39 +77,39 @@ def player_play(player, deck)
 
         break if answer == 'stay' || busted?(player)
 
-        puts "Player chose hit!"
+        prompt "Player chose hit!"
         card_drawn_msg('Player', player)
     end
     
     if busted?(player)
-        puts "Player chose hit!"
+        prompt "Player chose hit!"
         card_drawn_msg('Player', player)
-        puts "Player bust!"
-        puts "Dealer wins!"
+        prompt "Player bust!"
+        prompt "Dealer wins!"
     else
-        puts "Player chose stay!"
+        prompt "Player chose stay!"
         puts ""
     end
 end
 
 def dealer_play(dealer, deck)
-    puts "Dealer has: #{dealer[1][1]} and an unknown card."
+    prompt "Dealer has: #{dealer[1][1]} and an unknown card."
     puts ""
     loop do
         break if total(dealer) >= 17 || busted?(dealer)
 
         draw_card(dealer, deck)
 
-        puts "Dealer chose hit!"
+        prompt "Dealer chose hit!"
         card_drawn_msg('Dealer', dealer[1, (dealer.length - 1)])
     end
     
     if busted?(dealer)
-        puts "Dealer has: #{total(dealer)}."
-        puts "Dealer bust!"
-        puts "Player wins!"
+        prompt "Dealer has: #{total(dealer)}."
+        prompt "Dealer bust!"
+        prompt "Player wins!"
     else
-        puts "Dealer chose stay!"
+        prompt "Dealer chose stay!"
         puts ""
     end
 end
@@ -113,14 +117,14 @@ end
 def deal_first_cards(player, dealer, deck)
     puts ""
     2.times { draw_card(player, deck) }
-    puts "Player has: #{player[0][1]} and #{player[1][1]}. Total of #{total(player)}."
+    prompt "Player has: #{player[0][1]} and #{player[1][1]}. Total of #{total(player)}."
     
     2.times { draw_card(dealer, deck) }
-    puts "Dealer has: #{dealer[1][1]} and an unknown card."
+    prompt "Dealer has: #{dealer[1][1]} and an unknown card."
 end
 
 def winner?(player, dealer)
-    puts "Player has: #{total(player)}; Dealer has: #{total(dealer)}"
+    prompt "Player has: #{total(player)}; Dealer has: #{total(dealer)}"
     if total(player) > total(dealer)
         'Player'
     elsif total(player) < total(dealer)
@@ -132,9 +136,9 @@ end
 
 def display_winner(winner, player, dealer)
     case winner
-    when 'Player' then puts "Player wins with #{total(player)}!"
-    when 'Dealer' then puts "Dealer wins with #{total(dealer)}!"
-    when 'Draw' then puts "It's a draw!"
+    when 'Player' then prompt "Player wins with #{total(player)}!"
+    when 'Dealer' then prompt "Dealer wins with #{total(dealer)}!"
+    when 'Draw' then prompt "It's a draw!"
     end
 end
 
@@ -162,7 +166,7 @@ def game_play(player, dealer, deck)
         end
 
         puts ""
-        puts "Would you like to play again? (Y or N)"
+        prompt "Would you like to play again? (Y or N)"
         answer = gets.chomp.downcase
 
         break if answer == 'n'
