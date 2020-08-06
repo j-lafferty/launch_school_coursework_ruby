@@ -82,7 +82,6 @@ def player_play(player, deck)
         card_drawn_msg('Player', player)
         puts "Player bust!"
         puts "Dealer wins!"
-        puts ""
     else
         puts "Player chose stay!"
         puts ""
@@ -105,7 +104,6 @@ def dealer_play(dealer, deck)
         puts "Dealer has: #{total(dealer)}."
         puts "Dealer bust!"
         puts "Player wins!"
-        puts ""
     else
         puts "Dealer chose stay!"
         puts ""
@@ -124,14 +122,19 @@ end
 def winner?(player, dealer)
     puts "Player has: #{total(player)}; Dealer has: #{total(dealer)}"
     if total(player) > total(dealer)
-        puts "Player wins with #{total(player)}!"
-        puts ""
+        'Player'
     elsif total(player) < total(dealer)
-        puts "Dealer wins with #{total(dealer)}!"
-        puts ""
+        'Dealer'
     elsif total(player) == total(dealer)
-        puts "It's a draw!"
-        puts ""
+        'Draw'
+    end
+end
+
+def display_winner(winner, player, dealer)
+    case winner
+    when 'Player' then puts "Player wins with #{total(player)}!"
+    when 'Dealer' then puts "Dealer wins with #{total(dealer)}!"
+    when 'Draw' then puts "It's a draw!"
     end
 end
 
@@ -153,10 +156,12 @@ def game_play(player, dealer, deck)
             dealer_play(dealer, deck)
             break if busted?(dealer)
 
-            winner?(player, dealer)
+            winner = winner?(player, dealer)
+            display_winner(winner, player, dealer)
             break
         end
 
+        puts ""
         puts "Would you like to play again? (Y or N)"
         answer = gets.chomp.downcase
 
