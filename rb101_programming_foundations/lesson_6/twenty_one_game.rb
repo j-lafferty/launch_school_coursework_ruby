@@ -76,6 +76,10 @@ def total(cards)
   card_values?(values)
 end
 
+def dealer_stay?(cards)
+  total(cards) >= 17
+end
+
 def busted?(cards)
   total(cards) > 21
 end
@@ -118,12 +122,12 @@ def dealer_play(dealer, deck)
   prompt "Dealer has: #{dealer[0][1]} and #{dealer[1][1]}." \
          " Total of #{total(dealer)}."
   loop do
-    break if total(dealer) >= 17 || busted?(dealer)
+    break if dealer_stay?(dealer) || busted?(dealer)
 
     draw_card(dealer, deck)
 
     prompt "Dealer chose hit!"
-    card_drawn_msg('Dealer', dealer[1, (dealer.length - 1)])
+    card_drawn_msg('Dealer', dealer)
   end
 
   if busted?(dealer)
