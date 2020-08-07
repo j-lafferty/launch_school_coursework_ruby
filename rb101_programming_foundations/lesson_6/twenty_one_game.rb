@@ -39,7 +39,7 @@ def card_drawn_msg(str, cards)
   prompt "#{str} drew: #{cards.last[1]} of #{cards.last[0].capitalize}"
   case str
   when 'Player' then prompt "#{str} has: #{total(cards)}."
-  when 'Dealer' then prompt "#{str} has: #{total(cards)} and an unknown card."
+  when 'Dealer' then prompt "#{str} has: #{total(cards)}."
   end
   puts ""
 end
@@ -115,7 +115,8 @@ end
 
 def dealer_play(dealer, deck)
   puts ""
-  prompt "Dealer has: #{dealer[1][1]} and an unknown card."
+  prompt "Dealer has: #{dealer[0][1]} and #{dealer[1][1]}." \
+         " Total of #{total(dealer)}."
   loop do
     break if total(dealer) >= 17 || busted?(dealer)
 
