@@ -128,8 +128,7 @@ def dealer_play(dealer, deck)
 
   if busted?(dealer)
     prompt "Dealer has: #{total(dealer)}."
-    prompt "Dealer bust!"
-    prompt "Player wins!"
+    busted_msg('Dealer')
   else
     prompt "Dealer chose stay!"
   end
