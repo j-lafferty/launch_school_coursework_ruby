@@ -37,10 +37,7 @@ end
 
 def card_drawn_msg(str, cards)
   prompt "#{str} drew: #{cards.last[1]} of #{cards.last[0].capitalize}"
-  case str
-  when 'Player' then prompt "#{str} has: #{total(cards)}."
-  when 'Dealer' then prompt "#{str} has: #{total(cards)}."
-  end
+  prompt "#{str} has: #{total(cards)}."
   puts ""
 end
 
