@@ -48,18 +48,18 @@ def show_hand(cards)
   cards.map { |sub| "#{sub[1]} of #{sub[0].capitalize}" }
 end
 
-def total(cards)
-  values = cards.map { |card| card[1] }
-
+def card_values?(values)
   sum = 0
+
   values.each do |value|
-    if value == 'Ace'
-      sum += 11
-    elsif value.to_i == 0 # for face value cards
-      sum += 10
-    else
-      sum += value.to_i
-    end
+    sum += \
+      if value == 'Ace'
+        11
+      elsif value.to_i == 0 # for face value cards
+        10
+      else
+        value.to_i
+      end
   end
 
   # set Ace to equal 1 if bust when Ace set to 11
@@ -70,8 +70,25 @@ def total(cards)
   sum
 end
 
+def total(cards)
+  values = cards.map { |card| card[1] }
+
+  card_values?(values)
+end
+
 def busted?(cards)
   total(cards) > 21
+end
+
+def busted_msg(str)
+  case str
+  when 'Player'
+    prompt "Player bust!"
+    prompt "Dealer wins!"
+  when 'Dealer'
+    prompt "Dealer bust!"
+    prompt "Player wins!"
+  end
 end
 
 def player_play(player, deck)
@@ -89,8 +106,8 @@ def player_play(player, deck)
   end
 
   if busted?(player)
-    prompt "Player bust!"
-    prompt "Dealer wins!"
+    card_drawn_msg('Player', player)
+    busted_msg('Player')
   else
     prompt "Player chose stay!"
   end
