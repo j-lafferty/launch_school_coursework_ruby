@@ -1,6 +1,8 @@
 # Write a method that takes one argument, a positive integer, and returns the sum of its digits.
 
-
+def sum(num)
+  num.digits.sum
+end
 
 # Examples:
 puts sum(23) == 5
