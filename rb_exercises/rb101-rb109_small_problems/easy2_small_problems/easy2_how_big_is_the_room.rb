@@ -4,7 +4,24 @@
 
 # Do not worry about validating the input at this time.
 
+def square_meter(len, wid)
+  len * wid
+end
 
+def squre_feet(sq_meter)
+  (sq_meter * 10.7639).round(2)
+end
+
+puts "Enter the length of the room in meters: "
+room_length = gets.chomp.to_f
+
+puts "Enter the width of the room in meters: "
+room_width = gets.chomp.to_f
+
+sq_meter = square_meter(room_length, room_width)
+sq_feet = squre_feet(sq_meter)
+
+puts "The area of the room is #{sq_meter} square meters (#{sq_feet} square feet)."
 
 # Example Run
 # Enter the length of the room in meters:
