@@ -6,8 +6,8 @@
 
 SQMETERS_TO_SQFEET = 10.7639
 
-def square_meter(len, wid)
-  len * wid
+def square_meter(rm_length, rm_width)
+  rm_length * rm_width
 end
 
 def squre_feet(sq_meter, to_sqfeet)
