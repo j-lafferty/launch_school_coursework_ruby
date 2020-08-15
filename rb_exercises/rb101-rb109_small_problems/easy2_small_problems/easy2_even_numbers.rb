@@ -2,3 +2,6 @@
 
 # initial solution
 (1..99).each {|i| puts i if i.even?}
+
+# alternate solution
+puts (1..99).select(&:even?)
