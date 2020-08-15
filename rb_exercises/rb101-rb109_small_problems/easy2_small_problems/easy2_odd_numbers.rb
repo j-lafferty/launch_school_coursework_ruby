@@ -4,4 +4,4 @@
 (1..99).step(2) {|i| puts i}
 
 # alternate solution
-puts (1..99).select(&:i)
+puts (1..99).select(&:odd?)
