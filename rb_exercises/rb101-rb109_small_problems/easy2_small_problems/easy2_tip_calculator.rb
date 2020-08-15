@@ -13,8 +13,8 @@ tip_percentage = gets.chomp.to_f
 tip_amount = caltulate_tip(bill, tip_percentage).round(2)
 total = (bill + tip_amount).round(2)
 
-puts "The tip is $#{tip_amount}"
-puts "The total is $#{total}"
+puts "The tip is $#{format("%.2f", tip_amount)}"
+puts "The total is $#{format("%.2f", total)}"
 
 # Example:
 # What is the bill? 200
