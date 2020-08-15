@@ -26,11 +26,23 @@ def display(input, number, result)
   end
 end
 
-msg("Please enter an integer greater than 0: ")
-number = gets.chomp.to_i
+number = nil
+loop do
+  msg("Please enter an integer greater than 0: ")
+  number = gets.chomp.to_i
 
-msg("Enter 's' to compute the sum, 'p' to compute the product.")
-input = gets.chomp.downcase
+  break if number > 0
+  msg("Invalid entry, please try again.")
+end
+
+input = nil
+loop do
+  msg("Enter 's' to compute the sum, 'p' to compute the product.")
+  input = gets.chomp.downcase
+
+  break if input == 's' || input == 'p'
+  msg("Invalid entry, please try again.")
+end
 
 result = calculate(input, number)
 
