@@ -10,8 +10,8 @@ def square_meter(len, wid)
   len * wid
 end
 
-def squre_feet(sq_meter, to_feet)
-  (sq_meter * to_feet).round(2)
+def squre_feet(sq_meter, to_sqfeet)
+  (sq_meter * to_sqfeet).round(2)
 end
 
 puts "Enter the length of the room in meters: "
