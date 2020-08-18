@@ -5,19 +5,28 @@ def msg(str)
 end
 
 def multiply(num1, num2)
-  [num1.to_i, num2.to_i].reduce(:*)
+  [num1, num2].reduce(:*)
 end
 
-def square(num)
-  multiply(num, num)
+def power(num, raised)
+  result = 0
+  count = 1
+
+  while count < raised.to_i do
+    result += multiply(num.to_i, num.to_i)
+    count += 1
+  end
+
+  result
 end
 
-def display(num)
-  msg("#{num} ** 2 = #{square(num)}")
+def display(num, raised)
+  msg("#{num} ** #{raised} = #{power(num, raised)}")
 end
 
 loop do
   number = nil
+  power = nil
   
   loop do
     msg("Enter the number to square: ")
@@ -27,7 +36,15 @@ loop do
     msg("Invalid input, try again.")
   end
 
-  display(number)
+  loop do
+  msg("Enter the power of nth: ")
+  power = gets.chomp
+
+  break if power.to_i.to_s == power
+  msg("Invalid input, try again.")
+  end
+
+  display(number, power)
 
   msg("")
   msg("Do you want to square another number? (y or n)")
