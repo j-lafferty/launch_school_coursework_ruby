@@ -42,7 +42,7 @@ loop do
   display(number, power)
 
   msg("")
-  msg("Do you want to square another number? (y or n)")
+  msg("Do you want to power another number? (y or n)")
   input = gets.chomp.downcase
 
   break if input == 'n'
