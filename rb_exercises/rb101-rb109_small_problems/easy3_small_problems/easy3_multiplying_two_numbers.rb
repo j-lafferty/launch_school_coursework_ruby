@@ -15,6 +15,7 @@ end
 loop do
   number1 = nil
   number2 = nil
+  
   loop do
     msg("Enter the first number: ")
     number1 = gets.chomp
@@ -22,6 +23,7 @@ loop do
     break if number1.to_i.to_s == number1
     msg("Invalid input, try again.")
   end
+
   loop do
     msg("Enter the second number: ")
     number2 = gets.chomp
