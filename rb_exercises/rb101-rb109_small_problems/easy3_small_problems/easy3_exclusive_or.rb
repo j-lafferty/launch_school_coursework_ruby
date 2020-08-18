@@ -2,7 +2,7 @@
 
 # In this exercise, you will write a function named xor that takes two arguments, and returns true if exactly one of its arguments is truthy, false otherwise. Note that we are looking for a boolean result instead of a truthy/falsy value as returned by || and &&.
 
-# if both are true, then return false
+# if both are true || if both are false, then return false
 def xor?(arg1, arg2)
   arg1 == arg2 ? false : true
 end
