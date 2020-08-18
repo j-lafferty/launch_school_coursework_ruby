@@ -9,13 +9,8 @@ def multiply(num1, num2)
 end
 
 def power(num, raised)
-  result = 0
-  count = 1
-
-  while count < raised.to_i do
-    result += multiply(num.to_i, num.to_i)
-    count += 1
-  end
+  result = 1
+  raised.to_i.times { result = multiply(num.to_i, result) }
 
   result
 end
@@ -37,11 +32,11 @@ loop do
   end
 
   loop do
-  msg("Enter the power of nth: ")
-  power = gets.chomp
+    msg("Enter the power of nth: ")
+    power = gets.chomp
 
-  break if power.to_i.to_s == power
-  msg("Invalid input, try again.")
+    break if power.to_i.to_s == power
+    msg("Invalid input, try again.")
   end
 
   display(number, power)
