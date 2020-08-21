@@ -6,10 +6,18 @@ def multiple?(num, divisor)
   num % divisor == 0
 end
 
+# initial solution
+# def multisum(num)
+#   sum = 0
+#   1.upto(num) { |i| sum += i if multiple?(i, 3) || multiple?(i, 5) }
+#   sum
+# end
+
+# refactored solution
 def multisum(num)
-  sum = 0
-  1.upto(num) { |i| sum += i if multiple?(i, 3) || multiple?(i, 5) }
-  sum
+  (1..num).select { |i| 
+                    multiple?(i, 3) || multiple?(i, 5) 
+                  }.inject(:+)
 end
 
 # Examples
