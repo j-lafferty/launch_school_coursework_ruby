@@ -1,8 +1,15 @@
 # Write a method that takes an Array of numbers, and returns an Array with the same number of elements, and each element has the running total from the original Array.
 
+# initial solution
+# def running_total(arr)
+#   sum = 0
+#   arr.map {|i| sum += i}
+# end
+
+# refactored solution
+# returns new array where arr index i == sum of all values between arr[0] and arr[i]
 def running_total(arr)
-  sum = 0
-  arr.map {|i| sum += i}
+  arr.map.with_index { |_, i| arr[0..i].sum }
 end
 
 # Examples:
