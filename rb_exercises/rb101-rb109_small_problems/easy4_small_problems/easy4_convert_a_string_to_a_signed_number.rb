@@ -7,9 +7,36 @@
 
 # You may not use any of the standard conversion methods available in Ruby, such as String#to_i, Integer(), etc. You may, however, use the string_to_integer method from the previous lesson.
 
+DIGIT_HASH = Hash[('0'..'9').to_a.zip((0..9).to_a)]
+
+def base_ten(num, i)
+  num * (10 ** i)
+end
+
+def string_to_integer(str)
+  # reverse for base ten during loop iteration
+  num_arr = str.chars.reverse 
+  
+  total = 0
+  
+  num_arr.length.times do |i|
+    value = DIGIT_HASH[num_arr[i]]
+    total += base_ten(value, i)
+  end
+
+  total
+end
+
+def string_to_signed_integer(str)
+  sign = str.slice!(0) if str[0] == '-' || str[0] == '+'
+
+  value = string_to_integer(str)
+
+  sign == '-' ? -value : value
+end
 
 
 # Examples
-string_to_signed_integer('4321') == 4321
-string_to_signed_integer('-570') == -570
-string_to_signed_integer('+100') == 100
+puts string_to_signed_integer('4321') == 4321
+puts string_to_signed_integer('-570') == -570
+puts string_to_signed_integer('+100') == 100
