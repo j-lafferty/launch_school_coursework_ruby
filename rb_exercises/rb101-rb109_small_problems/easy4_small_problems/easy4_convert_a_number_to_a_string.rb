@@ -4,8 +4,26 @@
 
 # You may not use any of the standard conversion methods available in Ruby, such as Integer#to_s, String(), Kernel#format, etc. Your method should do this the old-fashioned way and construct the string by analyzing and manipulating the number.
 
+DIGIT_HASH = Hash[(0..9).to_a.zip(('0'..'9').to_a)]
+
+# this doesn't statisfy the problem, based on the restrictions
+# #.join is an alias for #.to_s
+# def integer_to_string(num)
+#   num.digits.reverse.join
+# end
+
+# updated solution adhering to the restrictions
 def integer_to_string(num)
-  num.digits.reverse.join
+  num_arr = num.digits.reverse
+  
+  total = ''
+  
+  num_arr.length.times do |i|
+    value = DIGIT_HASH[num_arr[i]]
+    total += value
+  end
+
+  total
 end
 
 # Examples:
