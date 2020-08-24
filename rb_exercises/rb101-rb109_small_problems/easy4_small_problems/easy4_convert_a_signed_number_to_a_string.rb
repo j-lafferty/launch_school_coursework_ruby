@@ -16,14 +16,13 @@ DIGIT_HASH = Hash[(0..9).to_a.zip(('0'..'9').to_a)]
 def integer_to_string(num)
   num_arr = num.digits.reverse
   
-  total = ''
+  str = ''
   
   num_arr.length.times do |i|
-    value = DIGIT_HASH[num_arr[i]]
-    total += value
+    str += DIGIT_HASH[num_arr[i]]
   end
 
-  total
+  str
 end
 
 def signed_integer_to_string(num)
