@@ -2,19 +2,16 @@
 
 # You may assume that every word contains at least one letter, and that the string will always contain at least one word. You may also assume that each string contains nothing but words and spaces
 
-def letter_swap(word, first, last)
-  first == nil ? last : last.concat(word, first)
+def letter_swap(word)
+  word[0], word[-1] = word[-1], word[0]
+  word
 end
 
 def swap(str)
   words = str.split(' ')
-  result = []
 
-  words.each do |word|
-    last = word.slice!(word.length - 1)
-    first = word.slice!(0)
-
-    result << letter_swap(word, first, last)
+  result = words.map do |word|
+    letter_swap(word)
   end
 
   result.join(' ')
