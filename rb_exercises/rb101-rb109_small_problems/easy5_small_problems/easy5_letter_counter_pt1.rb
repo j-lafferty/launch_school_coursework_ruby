@@ -2,13 +2,19 @@
 
 # Words consist of any string of characters that do not include a space.
 
-def word_sizes(str)
-  count = Hash.new(0)
-  str.split.each do |word|
-    count[word.size] += 1
-  end
+# first attempt
+# def word_sizes(str)
+#   count = Hash.new(0)
+#   str.split.each do |word|
+#     count[word.size] += 1
+#   end
 
-  count
+#   count
+# end
+
+# refactored
+def word_sizes(str)
+  str.split.map { |word| word.size }.tally
 end
 
 # Examples
