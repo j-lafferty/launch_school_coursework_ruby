@@ -12,7 +12,13 @@ def box_space(str)
   spaces
 end
 
+def truncate?(str)
+  str.size > 78 ? str[0..75] << str[76..-1].replace('...') : str
+end
+
 def print_in_box(str)
+  str = truncate?(str)
+
   puts "+-#{box_dash(str)}-+"
   puts "| #{box_space(str)} |"
   puts "| #{str} |"
@@ -28,6 +34,13 @@ print_in_box('To boldly go where no one has gone before.')
 # | To boldly go where no one has gone before. |
 # |                                            |
 # +--------------------------------------------+
+
+print_in_box('To boldly go where no one has gone before, except for that person, and that other person.')
+# +---------------------------------------------------------------------------------+
+# |                                                                                 |
+# | To boldly go where no one has gone before, except for that person, and that ... |
+# |                                                                                 |
+# +---------------------------------------------------------------------------------+
 
 print_in_box('')
 # +--+
