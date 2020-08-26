@@ -3,14 +3,11 @@
 def crunch(str)
   cleaned_str = str.chars
   
-  # convert all duplicate adjacent chars to nil
   (cleaned_str.size - 1).downto(1) do |i| 
-    cleaned_str[i] = nil if cleaned_str[i - 1] == cleaned_str[i]
+    cleaned_str.delete_at(i) if cleaned_str[i - 1] == cleaned_str[i]
   end
   
-  # remove all nil values and return a string
-  cleaned_str.reject { |i| i == nil }
-             .join
+  cleaned_str.join
 end
 
 # Examples:
