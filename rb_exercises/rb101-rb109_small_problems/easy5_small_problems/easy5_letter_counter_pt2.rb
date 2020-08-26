@@ -2,7 +2,7 @@
 
 
 def word_sizes(str)
-  str.split.map { |word| word.tr('^a-zA-Z', '').size }.tally
+  str.split.map { |word| word.delete('^a-zA-Z').size }.tally
 end
 
 # Examples
