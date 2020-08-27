@@ -2,8 +2,16 @@
 
 DEGREE = "\xC2\xB0"
 
-def dms(angle)
+def display(deg, min, sec)
+  puts format(%(#{deg}#{DEGREE}%02d'%02d"), min, sec)
+end
 
+def dms(angle)
+  degrees, d_remainder = angle.divmod(1)
+  minutes, m_remainder = (d_remainder * 60).divmod(1)
+  seconds = (m_remainder * 60)
+
+  display(degrees, minutes, seconds)
 end
 
 # Examples:
