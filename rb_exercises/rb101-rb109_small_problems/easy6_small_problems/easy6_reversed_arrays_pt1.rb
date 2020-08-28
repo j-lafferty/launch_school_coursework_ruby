@@ -4,13 +4,7 @@
 
 def reverse!(arr)
   reverse_arr = []
-  i = 0
-  
-  while i < arr.size
-    reverse_arr.unshift(arr[i])
-    i += 1
-  end
-  
+  arr.each { |i| reverse_arr.unshift(i) }
   arr.replace(reverse_arr)
 end
 
