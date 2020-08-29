@@ -4,23 +4,30 @@ def triangle(num)
   1.upto(num) { |i| puts ('*' * i).rjust(num) }
 end
 
+def upside_down_triangle(num)
+  num.downto(1) { |i| puts ('*' * i).rjust(num) }
+end
+
 # Examples:
 
 triangle(5)
 
-#     *
-#    **
-#   ***
-#  ****
-# *****
+# #     *
+# #    **
+# #   ***
+# #  ****
+# # *****
 triangle(9)
 
-#         *
-#        **
-#       ***
-#      ****
-#     *****
-#    ******
-#   *******
-#  ********
-# *********
+# #         *
+# #        **
+# #       ***
+# #      ****
+# #     *****
+# #    ******
+# #   *******
+# #  ********
+# # *********
+
+upside_down_triangle(5)
+upside_down_triangle(9)
