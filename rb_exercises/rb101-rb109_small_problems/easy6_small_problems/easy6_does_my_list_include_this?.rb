@@ -7,7 +7,7 @@
 
 # alternate solution
 def include?(arr, num)
-  arr.count { |i| i == num } > 0
+  arr.count(num) > 0
 end
 
 puts include?([1,2,3,4,5], 3) == true
