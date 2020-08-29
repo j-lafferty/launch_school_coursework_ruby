@@ -6,6 +6,11 @@ def word_cap(str)
   str.split.map(&:capitalize).join(' ')
 end
 
+# alternate solution
+# def word_cap(str)
+#   str.split.map{ |i| i[0].upcase << i[1..-1].downcase }.join(' ')
+# end
+
 # Examples
 
 puts word_cap('four score and seven') == 'Four Score And Seven'
