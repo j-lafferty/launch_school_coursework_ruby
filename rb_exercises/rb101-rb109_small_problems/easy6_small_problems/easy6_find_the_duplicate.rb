@@ -1,7 +1,12 @@
 # Given an unordered array and the information that exactly one value in the array occurs twice (every other value occurs exactly once), how would you determine which value occurs twice? Write a method that will find and return the duplicate value that is known to be in the array.
 
+# simple solution
+# def find_dup(arr)
+#   arr.sum - arr.uniq.sum
+# end
+
 def find_dup(arr)
-  arr.sum - arr.uniq.sum
+  arr.find { |i| arr.count(i) == 2 }
 end
 
 # Examples:
