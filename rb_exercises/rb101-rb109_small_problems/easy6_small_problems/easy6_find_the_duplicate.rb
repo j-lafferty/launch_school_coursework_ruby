@@ -9,6 +9,17 @@ def find_dup(arr)
   arr.find { |i| arr.count(i) == 2 }
 end
 
+# longer, alternate solution
+# def find_dup(arr)
+#   arr_uniq = []
+#   dup_num = nil
+
+#   arr.each do |i|
+#     arr_uniq.include?(i) ? dup_num = i : arr_uniq << i
+#   end
+#   dup_num
+# end
+
 # Examples:
 
 puts find_dup([1, 5, 3, 1]) == 1
