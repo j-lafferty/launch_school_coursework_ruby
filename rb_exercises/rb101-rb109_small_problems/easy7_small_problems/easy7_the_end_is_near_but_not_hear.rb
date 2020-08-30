@@ -5,10 +5,10 @@
 # You may assume that the input String will always contain at least two words.
 
 def penultimate(str)
-
+  str.split[-2]
 end
 
 # Examples:
 
-penultimate('last word') == 'last'
-penultimate('Launch School is great!') == 'is'
+puts penultimate('last word') == 'last'
+puts penultimate('Launch School is great!') == 'is'
