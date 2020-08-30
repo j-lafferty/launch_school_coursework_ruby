@@ -1,8 +1,8 @@
 # Write a method that takes an Array of integers as input, multiplies all the numbers together, divides the result by the number of entries in the Array, and then prints the result rounded to 3 decimal places. Assume the array is non-empty.
 
 def show_multiplicative_average(arr)
-  puts "The result is "\
-        "#{format("%.3f", (arr.inject(:*) / arr.size.to_f).round(3))}"
+  avg = (arr.inject(:*) / arr.size.to_f).round(3)
+  puts "The result is #{format("%.3f", avg)}"
 end
 
 # Examples:
