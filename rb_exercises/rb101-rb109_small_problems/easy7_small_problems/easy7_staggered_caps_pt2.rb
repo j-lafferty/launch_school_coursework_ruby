@@ -2,7 +2,7 @@
 
 def staggered_case(str)
   # select non-alphabetic characters with their index
-  non_alpha = str.chars.each_with_index.select { |c, idx| c.match?(/[^a-z]/i) }
+  non_alpha = str.chars.each_with_index.select { |c, _| c.match?(/[^a-z]/i) }
 
   # strip all non-alphabetic characters
   only_aplha = str.chars.select { |c| c.match?(/[a-z]/i) }
