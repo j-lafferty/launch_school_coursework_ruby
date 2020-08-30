@@ -11,9 +11,8 @@ def staggered_case(str)
   staggered = only_aplha.each_with_index.map { |c, idx| idx.even? ? c.upcase : c.downcase }
 
   #insert non-alphabetic character into original index location
-  non_alpha.each do |i|
-    staggered.insert(i[1], i[0])
-  end
+  non_alpha.each { |i| staggered.insert(i[1], i[0]) }
+  
   staggered.join
 end
 
