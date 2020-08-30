@@ -16,7 +16,7 @@ end
 def penultimate_further(str)
   arr = str.split
   case
-  when arr.size <= 1 then arr[0]
+  when arr.size == (0..1) then arr[0]
   else arr.at((arr.size / 2.0).ceil - 1)
   end
 end
@@ -29,3 +29,4 @@ puts penultimate('Launch School is great!') == 'is'
 puts penultimate_further('Launch School is great!') == 'School'
 puts penultimate_further('Hello') == 'Hello'
 puts penultimate_further('Suppose we need a method') == 'need'
+puts penultimate_further('') == nil
