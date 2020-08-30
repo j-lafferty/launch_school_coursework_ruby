@@ -5,7 +5,7 @@ def staggered_case(str)
   non_alpha = str.chars.each_with_index.select { |c, idx| c.match?(/[^a-z]/i) }
 
   # strip all non-alphabetic characters
-  only_aplha = str.chars.select { |c| c if c.match?(/[a-z]/i) }
+  only_aplha = str.chars.select { |c| c.match?(/[a-z]/i) }
 
   # stagger case
   staggered = only_aplha.each_with_index.map { |c, idx| idx.even? ? c.upcase : c.downcase }
