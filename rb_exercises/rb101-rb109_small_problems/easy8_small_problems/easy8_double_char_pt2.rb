@@ -1,7 +1,7 @@
 # Write a method that takes a string, and returns a new string in which every consonant character is doubled. Vowels (a,e,i,o,u), digits, punctuation, and whitespace should not be doubled.
 
 def double_consonants(str)
-  str.chars.map { |i| i.match?(/\p{Alpha}/) && i.match?(/[^aeiou]/) ? i * 2 : i }.join
+  str.chars.map { |i| i.match?(/\p{Alpha}/) && i.match?(/[^aeiou]/i) ? i * 2 : i }.join
 end
 
 # Examples:
