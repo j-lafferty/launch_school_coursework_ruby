@@ -13,18 +13,18 @@ def substrings(str)
 end
 
 def palindromes(str)
-
+  substrings(str).select { |v| v if v.length > 1 && v == v.reverse }
 end
 
 # Examples:
 
-palindromes('abcd') == []
-palindromes('madam') == ['madam', 'ada']
-palindromes('hello-madam-did-madam-goodbye') == [
+puts palindromes('abcd') == []
+puts palindromes('madam') == ['madam', 'ada']
+puts palindromes('hello-madam-did-madam-goodbye') == [
   'll', '-madam-', '-madam-did-madam-', 'madam', 'madam-did-madam', 'ada',
   'adam-did-mada', 'dam-did-mad', 'am-did-ma', 'm-did-m', '-did-', 'did',
   '-madam-', 'madam', 'ada', 'oo'
 ]
-palindromes('knitting cassettes') == [
+puts palindromes('knitting cassettes') == [
   'nittin', 'itti', 'tt', 'ss', 'settes', 'ette', 'tt'
 ]
