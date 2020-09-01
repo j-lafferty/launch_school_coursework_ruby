@@ -8,7 +8,7 @@
 
 # refactored
 def leading_substrings(str)
-  (0..str.length - 1).map { |i| str[0..i] }
+  (1..str.length).map { |i| str[0, i] }
 end
 
 # Examples:
