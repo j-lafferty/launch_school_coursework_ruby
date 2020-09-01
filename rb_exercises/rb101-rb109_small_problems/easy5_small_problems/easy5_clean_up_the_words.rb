@@ -14,8 +14,7 @@
 #   end
 
 #   # remove all nil values and return a string
-#   cleaned_str.reject { |i| i == nil }
-#              .join
+#   cleaned_str.compact.join
 # end
 
 # refactored
