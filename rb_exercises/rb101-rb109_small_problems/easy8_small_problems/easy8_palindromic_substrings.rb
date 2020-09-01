@@ -16,8 +16,16 @@ def palindromes(str)
   substrings(str).select { |v| v if v.length > 1 && v == v.reverse }
 end
 
+# further exploration
+# Can you modify this method (and/or its predecessors) to ignore non-alphanumeric characters and case? Alphanumeric characters are alphabetic characters(upper and lowercase) and digits.
+
+def palindromes_alnum_only(str)
+  substrings(str).select { |v| v if v.length > 1 && v == v.reverse unless v.match?(/\p{^Alnum}/)}
+end
+
 # Examples:
 
+puts "Palindroms"
 puts palindromes('abcd') == []
 puts palindromes('madam') == ['madam', 'ada']
 puts palindromes('hello-madam-did-madam-goodbye') == [
@@ -26,5 +34,17 @@ puts palindromes('hello-madam-did-madam-goodbye') == [
   '-madam-', 'madam', 'ada', 'oo'
 ]
 puts palindromes('knitting cassettes') == [
+  'nittin', 'itti', 'tt', 'ss', 'settes', 'ette', 'tt'
+]
+
+# Examples:
+
+puts "Alphanumeric Palindroms Only"
+puts palindromes_alnum_only('abcd') == []
+puts palindromes_alnum_only('madam') == ['madam', 'ada']
+puts palindromes_alnum_only('hello-madam-did-madam-goodbye') == [
+  'll', 'madam', 'ada', 'did', 'madam', 'ada', 'oo'
+]
+puts palindromes_alnum_only('knitting cassettes') == [
   'nittin', 'itti', 'tt', 'ss', 'settes', 'ette', 'tt'
 ]
