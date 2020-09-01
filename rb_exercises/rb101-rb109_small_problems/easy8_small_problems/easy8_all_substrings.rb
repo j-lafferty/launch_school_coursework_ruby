@@ -2,13 +2,17 @@
 
 # You may (and should) use the leading_substrings method you wrote in the previous exercise:
 
-def substrings(str)
+def leading_substrings(str, c)
+  (1..str.length - c).map { |i| str[c, i] }
+end
 
+def substrings(str)
+  (0..str.length - 1).map { |c| leading_substrings(str, c) }.flatten
 end
 
 # Examples:
 
-substrings('abcde') == [
+p substrings('abcde') == [
   'a', 'ab', 'abc', 'abcd', 'abcde',
   'b', 'bc', 'bcd', 'bcde',
   'c', 'cd', 'cde',
