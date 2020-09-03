@@ -8,6 +8,13 @@ def rotate_array(arr)
   rotate_arr
 end
 
+# Further Exploration
+# Write a method that rotates a string instead of an array. Do the same thing for integers. You may use rotate_array from inside your new method.
+
+def rotate_string(str)
+  rotate_array(str.chars).join
+end
+
 # Example:
 
 puts rotate_array([7, 3, 5, 2, 9, 1]) == [3, 5, 2, 9, 1, 7]
@@ -17,3 +24,7 @@ puts rotate_array(['a']) == ['a']
 x = [1, 2, 3, 4]
 puts rotate_array(x) == [2, 3, 4, 1]   # => true
 puts x == [1, 2, 3, 4]                 # => true
+
+# Example Further Exploration
+
+puts rotate_string('hello hello') == 'ello helloh'
