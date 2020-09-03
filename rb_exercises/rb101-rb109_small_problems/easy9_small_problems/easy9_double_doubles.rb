@@ -4,18 +4,14 @@
 
 def double?(num)
   digits = num.digits.reverse
-  num_center = digits.size / 2
-  
-  if digits.size.even?
-    if digits[0..num_center - 1] == digits[num_center..-1]
-      num
-    end
-  end
+  len = digits.size
+  num_center = len / 2
+
+  true if len.even? && digits[0..num_center - 1] == digits[num_center..-1]
 end
 
 def twice(num)
-  double_check = double?(num)
-  double_check ? double_check : num * 2
+  double?(num) ? num : num * 2
 end
 
 # Examples:
