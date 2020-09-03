@@ -24,7 +24,7 @@ end
 def get_grade(num1, num2, num3)
   avg = grade_average(num1, num2, num3)
   avg = 100 if avg > 100
-  LETTER_GRADE.find { |k, v| k if v.include?(avg) }.first.to_s
+  LETTER_GRADE.find { |_, v| v.include?(avg) }.first.to_s
 end
 
 # Example:
