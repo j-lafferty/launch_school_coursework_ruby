@@ -3,9 +3,7 @@
 # Do not use the method Array#rotate or Array#rotate! for your implementation.
 
 def rotate_array(arr)
-  rotate_arr = []
-  (arr.size - 1).downto(1) { |i| rotate_arr.unshift(arr[i]) }
-  rotate_arr << arr.first
+  arr[1..-1] << arr[0]
 end
 
 # Further Exploration
