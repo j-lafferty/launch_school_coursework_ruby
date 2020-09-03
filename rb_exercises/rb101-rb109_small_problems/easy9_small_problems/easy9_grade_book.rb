@@ -18,7 +18,7 @@ LETTER_GRADE = {
 
 def grade_average(num1, num2, num3)
   scores = [num1, num2, num3]
-  (scores.sum / scores.size).round
+  scores.sum / scores.size
 end
 
 def get_grade(num1, num2, num3)
