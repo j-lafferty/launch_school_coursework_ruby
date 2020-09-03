@@ -5,9 +5,9 @@
 def double?(num)
   digits = num.digits.reverse
   len = digits.size
-  num_center = len / 2
+  center = len / 2
 
-  true if len.even? && digits[0..num_center - 1] == digits[num_center..-1]
+  true if len.even? && digits[0..center - 1] == digits[center..-1]
 end
 
 def twice(num)
