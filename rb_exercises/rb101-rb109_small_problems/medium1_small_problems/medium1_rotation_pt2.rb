@@ -1,7 +1,13 @@
 # Write a method that can rotate the last n digits of a number.
 
-def rotate_rightmost_digits(num1, num2)
+def rotate_array(arr, i)
+  rotate_num = arr.delete_at(arr.size - i)
+  arr << rotate_num
+end
 
+def rotate_rightmost_digits(num1, n)
+  digits = num1.digits.reverse
+  rotate_array(digits, n).join.to_i
 end
 
 # For example:
