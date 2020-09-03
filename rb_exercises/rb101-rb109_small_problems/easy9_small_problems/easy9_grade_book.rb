@@ -23,6 +23,7 @@ end
 
 def get_grade(num1, num2, num3)
   avg = grade_average(num1, num2, num3)
+  avg = 100 if avg > 100
   LETTER_GRADE.find { |k, v| k if v.include?(avg) }.first.to_s
 end
 
@@ -30,3 +31,4 @@ end
 
 puts get_grade(95, 90, 93) == "A"
 puts get_grade(50, 50, 95) == "D"
+puts get_grade(100, 105, 110) == "A"
