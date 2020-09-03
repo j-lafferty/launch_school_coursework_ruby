@@ -1,7 +1,7 @@
 # Write a method which takes a grocery list (array) of fruits with quantities and converts it into an array of the correct number of each fruit.
 
 def buy_fruit(arr)
-  arr.map { |i| [i[0]] * i[1] }.flatten
+  arr.map { |fruit, count| [fruit] * count }.flatten
 end
 
 # Example:
