@@ -20,7 +20,7 @@ def init_light_switches(num)
 end
 
 def lights_on?(lights)
-
+  lights.select { |_, state| state == 'on' }.keys
 end
 
 def toggle(lights, n)
