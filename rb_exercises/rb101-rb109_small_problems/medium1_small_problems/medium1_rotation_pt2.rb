@@ -1,7 +1,7 @@
 # Write a method that can rotate the last n digits of a number.
 
 def rotate_array(arr, i)
-  rotate_num = arr.delete_at(arr.size - i)
+  rotate_num = arr.delete_at(-i)
   arr << rotate_num
 end
 
