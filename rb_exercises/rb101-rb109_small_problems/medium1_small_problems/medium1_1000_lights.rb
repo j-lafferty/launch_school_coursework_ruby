@@ -13,3 +13,19 @@
 
 # With 10 lights, 3 lights are left on: lights 1, 4, and 9. The return value is [1, 4, 9].
 
+def light_switches(num)
+  switches = [*1..num]
+  lights_on = []
+  lights_off = []
+
+  counter = 0
+  even_or_odd? = true
+
+  while counter < num do
+    
+    even_or_odd? ? false : true
+    counter += 1
+  end
+
+  lights_on
+end
