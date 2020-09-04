@@ -5,12 +5,11 @@ def star(num, i)
 end
 
 def top(num)
-  star(num, 1) if num == 1
-  1.step(num - 2, 2) { |i| star(num, i) }
+  1.step(num, 2) { |i| star(num, i) }
 end
 
 def bottom(num)
-  (num).step(1, -2) { |i| star(num, i) }
+  (num - 2).step(1, -2) { |i| star(num, i) }
 end
 
 def diamond(num)
