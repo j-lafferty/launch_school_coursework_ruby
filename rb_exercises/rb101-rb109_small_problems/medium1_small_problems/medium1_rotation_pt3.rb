@@ -15,9 +15,9 @@ def rotate_rightmost_digits(num1, n)
 end
 
 def max_rotation(num)
-  max_arr = []
-  (num.to_s.size).downto(1) { |j| max_arr << rotate_rightmost_digits(num, j).to_s.slice(-j) }
-  p max_arr
+  new_num = num
+  (num.to_s.size).downto(1) { |j| new_num = rotate_rightmost_digits(new_num, j) }
+  new_num
 end
 
 # Example:
