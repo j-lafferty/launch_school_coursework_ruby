@@ -24,12 +24,16 @@ def lights_on?(lights)
 end
 
 def toggle(lights, n)
-
+  lights.each do |k, state|
+    if k % n == 0
+      lights[k] = state == 'off' ? 'on' : 'off'
+    end
+  end
 end
 
 def light_switches(num)
   lights = init_light_switches(num)
-
+  (1).upto(num) { |i| toggle(lights, i) }
   lights_on?(lights)
 end
 
