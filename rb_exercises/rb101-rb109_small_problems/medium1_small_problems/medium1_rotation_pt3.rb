@@ -10,18 +10,20 @@ def rotate_array(arr, i)
 end
 
 def rotate_rightmost_digits(num1, n)
-  digits = num1.digits.reverse
+  digits = num1.to_s.chars
   rotate_array(digits, n).join.to_i
 end
 
 def max_rotation(num)
-
+  max_arr = []
+  (num.to_s.size).downto(1) { |j| max_arr << rotate_rightmost_digits(num, j).to_s.slice(-j) }
+  p max_arr
 end
 
 # Example:
 
-max_rotation(735291) == 321579
-max_rotation(3) == 3
-max_rotation(35) == 53
-max_rotation(105) == 15 # the leading zero gets dropped
-max_rotation(8_703_529_146) == 7_321_609_845
+puts max_rotation(735291) == 321579
+puts max_rotation(3) == 3
+puts max_rotation(35) == 53
+puts max_rotation(105) == 15 # the leading zero gets dropped
+puts max_rotation(8_703_529_146) == 7_321_609_845

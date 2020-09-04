@@ -6,7 +6,7 @@ def rotate_array(arr, i)
 end
 
 def rotate_rightmost_digits(num1, n)
-  digits = num1.digits.reverse
+  digits = num1.to_s.chars
   rotate_array(digits, n).join.to_i
 end
 
