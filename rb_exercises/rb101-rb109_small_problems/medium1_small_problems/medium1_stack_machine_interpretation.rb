@@ -21,6 +21,27 @@
 
 # You should initialize the register to 0.
 
+def minilang(str)
+  register = 0
+  stack = []
+  input = str.split
+
+  input.each do |i|
+    case
+    when i == i.to_i.to_s then register = i.to_i
+    when i == 'PUSH' then stack << register
+    when i == 'ADD' then register = stack.pop + register
+    when i == 'SUB' then register = stack.pop - register
+    when i == 'MULT' then register = stack.pop * register
+    when i == 'DIV' then register = stack.pop / register
+    when i == 'MOD'
+      mod = (stack.pop).divmod(register)
+      register = mod[1]
+    when i == 'POP' then register = stack.pop
+    when i == 'PRINT' then puts register
+    end
+  end
+end
 
 
 # Examples:
