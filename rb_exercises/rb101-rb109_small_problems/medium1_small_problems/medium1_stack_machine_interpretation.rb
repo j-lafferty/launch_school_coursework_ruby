@@ -30,10 +30,10 @@ def minilang(str)
     case
     when i == i.to_i.to_s then register = i.to_i
     when i == 'PUSH' then stack << register
-    when i == 'ADD' then register = stack.pop + register
+    when i == 'ADD' then register = register + stack.pop
     when i == 'SUB' then register =  register - stack.pop
-    when i == 'MULT' then register = stack.pop * register
-    when i == 'DIV' then register = stack.pop / register
+    when i == 'MULT' then register = register * stack.pop
+    when i == 'DIV' then register = register / stack.pop
     when i == 'MOD'
       mod = (stack.pop).divmod(register)
       register = mod[1]
