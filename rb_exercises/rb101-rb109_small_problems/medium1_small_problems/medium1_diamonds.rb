@@ -14,7 +14,7 @@ end
 
 def diamond(num)
   top(num)
-  bottom(num) if num > 1
+  bottom(num)
 end
 
 # Examples
