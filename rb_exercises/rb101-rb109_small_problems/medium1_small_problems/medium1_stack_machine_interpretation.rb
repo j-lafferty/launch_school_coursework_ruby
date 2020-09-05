@@ -35,7 +35,7 @@ def minilang(str)
     when i == 'MULT' then register = register * stack.pop
     when i == 'DIV' then register = register / stack.pop
     when i == 'MOD'
-      mod = (stack.pop).divmod(register)
+      mod = (register).divmod(stack.pop)
       register = mod[1]
     when i == 'POP' then register = stack.pop
     when i == 'PRINT' then puts register
