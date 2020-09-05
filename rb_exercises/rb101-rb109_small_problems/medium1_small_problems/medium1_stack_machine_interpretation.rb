@@ -31,7 +31,7 @@ def minilang(str)
     when i == i.to_i.to_s then register = i.to_i
     when i == 'PUSH' then stack << register
     when i == 'ADD' then register = stack.pop + register
-    when i == 'SUB' then register = stack.pop - register
+    when i == 'SUB' then register =  register - stack.pop
     when i == 'MULT' then register = stack.pop * register
     when i == 'DIV' then register = stack.pop / register
     when i == 'MOD'
