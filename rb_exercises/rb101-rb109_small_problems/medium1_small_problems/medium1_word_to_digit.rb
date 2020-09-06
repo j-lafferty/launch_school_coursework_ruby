@@ -5,17 +5,8 @@ NUM_DIGITS = [*0..9]
 DIGITS = ALPHA_DIGITS.zip(NUM_DIGITS).to_h
 
 def word_to_digit(str)
-  result = []
-
-  str.split.each do |i|
-    punct = i.slice!(-1) if i[-1].match?(/[[:punct:]]/)
-    word = DIGITS.has_key?(i) ? DIGITS[i].to_s : i
-
-    word += punct if punct != nil
-    result << word
-  end
-  
-  result.join(' ')
+  DIGITS.each { |k, v| str.gsub!(k, v.to_s) }
+  str
 end
 
 # Example:
