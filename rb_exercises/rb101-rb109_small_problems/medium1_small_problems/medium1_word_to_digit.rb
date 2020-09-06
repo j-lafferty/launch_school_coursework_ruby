@@ -5,7 +5,7 @@ NUM_DIGITS = [*0..9]
 DIGITS = ALPHA_DIGITS.zip(NUM_DIGITS).to_h
 
 def word_to_digit(str)
-  DIGITS.each { |k, v| str.gsub!(k, v.to_s) }
+  DIGITS.each { |k, v| str.gsub!(/\b#{k}/, v.to_s) }
   str
 end
 
