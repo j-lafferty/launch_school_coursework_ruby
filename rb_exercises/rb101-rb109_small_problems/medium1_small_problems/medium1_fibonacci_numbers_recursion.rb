@@ -21,8 +21,7 @@
 # Write a recursive method that computes the nth Fibonacci number, where nth is an argument to the method.
 
 def fibonacci(num)
-  return 1 if num <= 2
-  fibonacci(num - 1) + fibonacci(num - 2)
+  num <= 2 ? 1 : fibonacci(num - 1) + fibonacci(num - 2)
 end
 
 # Examples:
