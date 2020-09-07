@@ -7,11 +7,10 @@ end
 
 def longest_sentince(text)
   sentences = text.gsub(/[.?!]/, '\0|')
-                  .tr("\n", " ")
                   .split('|')
 
   longest = sentences.inject do |memo, sentence|
-    memo.tr(' ','').length > sentence.tr(' ','').length ? memo : sentence
+    memo.tr(' ','').size > sentence.tr(' ','').size ? memo : sentence
   end
 
   display_result(longest)
