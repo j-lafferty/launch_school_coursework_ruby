@@ -2,10 +2,14 @@
 
 # In this exercise, you are going to compute a method that returns the last digit of the nth Fibonacci number.
 
-def fibonacci_last(num)
+def fibonacci(num)
   num1, num2 = 1, 1
   3.upto(num) { num1, num2 = num2, (num1 + num2) }
-  num2.to_s[-1].to_i
+  num2
+end
+
+def fibonacci_last(num)
+  fibonacci(num % 60).to_s[-1].to_i
 end
 
 # Examples:
