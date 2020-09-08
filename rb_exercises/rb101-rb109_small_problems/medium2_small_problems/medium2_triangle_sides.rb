@@ -22,6 +22,10 @@ def isosceles?(sides, max, min)
   sides.select { |i| i == min }.size == 2
 end
 
+def scalene?(sides)
+  sides == sides.uniq
+end
+
 def triangle(side1, side2, side3)
   sides = [side1, side2, side3]
   max = sides.max
@@ -30,7 +34,7 @@ def triangle(side1, side2, side3)
   return :invalid if !valid_triangle?(sides, max, min)
   return :equilateral if equilateral?(sides, max)
   return :isosceles if isosceles?(sides, max, min)
-  return :scalene if !isosceles?(sides, max, min)
+  return :scalene if scalene?(sides)
 end
 
 # Examples:
