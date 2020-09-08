@@ -17,7 +17,7 @@ def equilateral?(sides, max)
   sides.all?(max)
 end
 
-def isosceles_or_scalene?(sides, max, min)
+def isosceles?(sides, max, min)
   sides.select { |i| i == max }.size == 2 ||
   sides.select { |i| i == min }.size == 2
 end
@@ -29,8 +29,8 @@ def triangle(side1, side2, side3)
 
   return :invalid if !valid_triangle?(sides, max, min)
   return :equilateral if equilateral?(sides, max)
-  return :isosceles if isosceles_or_scalene?(sides, max, min)
-  return :scalene if !isosceles_or_scalene?(sides, max, min)
+  return :isosceles if isosceles?(sides, max, min)
+  return :scalene if !isosceles?(sides, max, min)
 end
 
 # Examples:
