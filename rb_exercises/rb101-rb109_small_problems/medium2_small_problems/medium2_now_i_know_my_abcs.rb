@@ -7,8 +7,20 @@
 
 # Write a method that returns true if the word passed in as an argument can be spelled from this set of blocks, false otherwise.
 
-def block_word?(str)
+BLOCKS = [
+  ['B', 'O'], ['X', 'K'], ['D', 'Q'], ['C', 'P'],
+  ['N', 'A'], ['G', 'T'], ['R', 'E'], ['F', 'S'],
+  ['J', 'W'], ['H', 'U'], ['V', 'I'], ['L', 'Y'],
+  ['Z', 'M']
+]
 
+def block_word?(str)
+  blocks_used = []
+  str.upcase.chars.each do |chr|
+    BLOCKS.each { |block| blocks_used << block if block.include?(chr) }
+  end
+
+  blocks_used == blocks_used.uniq
 end
 
 # Examples:
