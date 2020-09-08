@@ -18,10 +18,8 @@ def equilateral?(sides, max)
 end
 
 def isosceles_or_scalene?(sides, max, min)
-  max_arr = sides.select { |i| i == max}
-  min_arr = sides.select { |i| i == min}
-
-  max_arr.size == 2 || min_arr == 2
+  sides.select { |i| i == max }.size == 2 ||
+  sides.select { |i| i == min }.size == 2
 end
 
 def triangle(side1, side2, side3)
