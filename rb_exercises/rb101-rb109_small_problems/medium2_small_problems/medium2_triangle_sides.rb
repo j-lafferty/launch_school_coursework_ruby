@@ -8,9 +8,7 @@
 # Write a method that takes the lengths of the 3 sides of a triangle as arguments, and returns a symbol :equilateral, :isosceles, :scalene, or :invalid depending on whether the triangle is equilateral, isosceles, scalene, or invalid.
 
 def valid_triangle?(sides, max, min)
-  return false if min <= 0
-  return false if (sides.sum - max) < max
-  true
+  min <= 0 || (sides.sum - max) < max ? false : true
 end
 
 def equilateral?(sides, max)
