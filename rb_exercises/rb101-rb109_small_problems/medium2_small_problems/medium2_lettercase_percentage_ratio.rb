@@ -5,7 +5,24 @@
 # You may assume that the string will always contain at least one character.
 
 def letter_percentages(str)
+  percentages = {
+    lowercase: 0,
+    uppercase: 0,
+    neither: 0
+  }
+  count = Hash.new(0)
 
+  str.chars.each do |i|
+    case
+    when i.match?(/\p{Ll}/) then count[:lowercase] += 1
+    when i.match?(/\p{Lu}/) then count[:uppercase] += 1
+    else count[:neither] += 1
+    end
+  end
+
+  count.each { |k, v| percentages[k] = (v / str.size.to_f * 100).round(2) }
+  
+  percentages
 end
 
 # Examples
