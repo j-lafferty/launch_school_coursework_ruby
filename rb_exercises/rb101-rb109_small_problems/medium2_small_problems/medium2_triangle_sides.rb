@@ -7,39 +7,28 @@
 
 # Write a method that takes the lengths of the 3 sides of a triangle as arguments, and returns a symbol :equilateral, :isosceles, :scalene, or :invalid depending on whether the triangle is equilateral, isosceles, scalene, or invalid.
 
-def valid_triangle?(sides, max, min)
-  min <= 0 || (sides.sum - max) < max ? false : true
+def valid_triangle?(*sides)
+  sides.min > 0 && sides.sum > 2 * sides.max
 end
 
-def equilateral?(sides, max)
-  sides.all?(max)
+def nbr_equal_sides(sides)
+  4 - sides.uniq.size
 end
 
-def isosceles?(sides, max, min)
-  sides.select { |i| i == max }.size == 2 ||
-    sides.select { |i| i == min }.size == 2
-end
-
-def scalene?(sides)
-  sides == sides.uniq
+def triangle_type(*sides)
+  case nbr_equal_sides(sides)
+  when 3
+    :equilateral
+  when 2
+    :isosceles
+  else
+    :scalene
+  end#.tap { |rv| puts "ret value by #{__method__} = #{rv}" } # for debugging
 end
 
 def triangle(side1, side2, side3)
-  sides = [side1, side2, side3]
-  max = sides.max
-  min = sides.min
-
-  if valid_triangle?(sides, max, min)
-    if equilateral?(sides, max)
-      :equilateral
-    elsif isosceles?(sides, max, min)
-      :isosceles
-    elsif scalene?(sides)
-      :scalene
-    end
-  else
-    :invalid
-  end#.tap { |rv| puts "ret value by #{__method__} = #{rv}" } # for debugging
+  return :invalid unless valid_triangle?(side1, side2, side3) # guard clause
+  triangle_type(side1, side2, side3)
 end
 
 # Examples:
