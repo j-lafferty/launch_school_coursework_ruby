@@ -29,12 +29,17 @@ def triangle(side1, side2, side3)
   max = sides.max
   min = sides.min
 
-  case
-  when !valid_triangle?(sides, max, min) then :invalid
-  when equilateral?(sides, max) then :equilateral
-  when isosceles?(sides, max, min) then :isosceles
-  when scalene?(sides) then :scalene
-  end
+  if valid_triangle?(sides, max, min)
+    if equilateral?(sides, max)
+      :equilateral
+    elsif isosceles?(sides, max, min)
+      :isosceles
+    elsif scalene?(sides)
+      :scalene
+    end
+  else
+    :invalid
+  end#.tap { |rv| puts "ret value by #{__method__} = #{rv}" } # for debugging
 end
 
 # Examples:
