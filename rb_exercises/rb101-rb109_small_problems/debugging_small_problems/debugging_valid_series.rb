@@ -3,7 +3,7 @@
 # Unfortunately, our last test case is not returning the expected result. Why is that?
 
 def valid_series?(nums)
-  return false if nums.sum != 47
+  nums.sum == 47 &&
   nums.count { |n| n.odd? } == 3
 end
 
