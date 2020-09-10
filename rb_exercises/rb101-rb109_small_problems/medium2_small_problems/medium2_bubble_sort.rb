@@ -32,19 +32,38 @@
 # Write a method that takes an Array as an argument, and sorts that Array using the bubble sort algorithm as just described. Note that your sort will be "in-place"; that is, you will mutate the Array passed as an argument. You may assume that the Array contains at least 2 elements.
 
 def bubble_sort!(arr)
+  arr_size = arr.size
+  counter = 0
+  swap = false
 
+  until counter == arr_size
+    1.upto(arr_size - 1) do |i|
+      if arr[i - 1] > arr[i]
+        swap_forward = arr.delete_at(i - 1)
+        arr.insert(i, swap_forward)
+        swap = true
+      end
+    end
+
+    break if !swap
+    
+    swap = false
+    counter += 1
+  end
+
+  arr
 end
 
 # Examples
 
 array = [5, 3]
 bubble_sort!(array)
-array == [3, 5]
+puts array == [3, 5]
 
 array = [6, 2, 7, 1, 4]
 bubble_sort!(array)
-array == [1, 2, 4, 6, 7]
+puts array == [1, 2, 4, 6, 7]
 
 array = %w(Sue Pete Alice Tyler Rachel Kim Bonnie)
 bubble_sort!(array)
-array == %w(Alice Bonnie Kim Pete Rachel Sue Tyler)
+puts array == %w(Alice Bonnie Kim Pete Rachel Sue Tyler)
