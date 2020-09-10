@@ -9,14 +9,29 @@
 
 # You may assume integer valued angles so you don't have to worry about floating point errors. You may also assume that the arguments are specified in degrees.
 
-def triangle(deg1, deg2, deg3)
+def valid_triangle?(*degs)
+  degs.all? { |deg| deg > 0 } && degs.sum == 180
+end
 
+def triangle_type(*degs)
+  if degs.include?(90)
+    :right
+  elsif degs.any? { |deg| deg > 90 }
+    :obtuse
+  else
+    :acute
+  end#.tap { |rv| puts "ret value by #{__method__} = #{rv}" } # for debugging
+end
+
+def triangle(deg1, deg2, deg3)
+  return :invalid unless valid_triangle?(deg1, deg2, deg3) # guard clause
+  triangle_type(deg1, deg2, deg3)
 end
 
 # Examples:
 
-triangle(60, 70, 50) == :acute
-triangle(30, 90, 60) == :right
-triangle(120, 50, 10) == :obtuse
-triangle(0, 90, 90) == :invalid
-triangle(50, 50, 50) == :invalid
+puts triangle(30, 90, 60) == :right
+puts triangle(60, 70, 50) == :acute
+puts triangle(120, 50, 10) == :obtuse
+puts triangle(0, 90, 90) == :invalid
+puts triangle(50, 50, 50) == :invalid
