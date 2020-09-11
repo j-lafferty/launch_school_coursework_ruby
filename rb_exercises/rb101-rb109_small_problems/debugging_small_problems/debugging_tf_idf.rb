@@ -4,9 +4,9 @@
   # A measure of how important a term is to a document in a collection of documents
   # (the importance increases proportionally to the term frequency in the document,
   # but decreases with the frequency of the word across documents)
-  
+
   def tfidf(term, document, documents)
-    tf(term, document) * idf(term, documents)
+    (tf(term, document) * idf(term, documents)).round(1)
   end
   
   # Term frequency (simple version):
@@ -24,10 +24,16 @@
   def idf(term, documents)
     number_of_documents = documents.length
     number_of_documents_with_term = documents.count { |d| tf(term, d) > 0 }
+
+    # without this guard clause:
+    # -- If 1 document with term is checked against documents without term,
+    #    result will be INFINITY.
+    # -- If no documents have term, result will be NaN.
+    return 0 if number_of_documents_with_term == 0
   
-    Math.log(number_of_documents / number_of_documents_with_term)
+    Math.log(number_of_documents / number_of_documents_with_term.to_f)
   end
-  
+ 
   # Very simple example
   
   document1 = "Schrödinger's cat is a thought experiment often featured in discussions of the interpretation of quantum mechanics. The Austrian physicist Erwin Schrödinger devised " +
@@ -55,18 +61,18 @@
   # For the term 'quantum mechanics', on the other hand, you only want to return document1.
   
   # expected outputs:
-  puts tfidf("cat", document1, documents) # ~ 1.2
-  puts tfidf("cat", document2, documents) # ~ 1.6
-  puts tfidf("cat", document3, documents) # 0
+  puts tfidf("cat", document1, documents) == 1.2 # ~ 1.2
+  puts tfidf("cat", document2, documents) == 1.6 # ~ 1.6
+  puts tfidf("cat", document3, documents) == 0 # 0
   
-  puts tfidf("quantum", document1, documents) # ~ 5.5
-  puts tfidf("quantum", document2, documents) # 0
-  puts tfidf("quantum", document3, documents) # 0
+  puts tfidf("quantum", document1, documents) == 5.5 # ~ 5.5
+  puts tfidf("quantum", document2, documents) == 0 # 0
+  puts tfidf("quantum", document3, documents) == 0 # 0
   
-  puts tfidf("mastery", document1, documents) # 0
-  puts tfidf("mastery", document2, documents) # 0
-  puts tfidf("mastery", document3, documents) # ~ 3.3
+  puts tfidf("mastery", document1, documents) == 0 # 0
+  puts tfidf("mastery", document2, documents) == 0 # 0
+  puts tfidf("mastery", document3, documents) == 3.3 # ~ 3.3
   
-  puts tfidf("some", document1, documents) # 0
-  puts tfidf("some", document2, documents) # ~ 0.4
-  puts tfidf("some", document3, documents) # ~ 0.4
+  puts tfidf("some", document1, documents) == 0 # 0
+  puts tfidf("some", document2, documents) == 0.4 # ~ 0.4
+  puts tfidf("some", document3, documents) == 0.4 # ~ 0.4
