@@ -2,11 +2,13 @@
 
 def neutralize(sentence)
   words = sentence.split(' ')
-  words.each do |word|
-    words.delete(word) if negative?(word)
-  end
 
-  words.join(' ')
+  # mutating array causes items to shift while iterating.
+  # this can be avoided by assigning the changes to a new array, 
+  # and leaving the original array intact.
+  new_sentence = words.select { |word| word unless negative?(word) }
+  
+  new_sentence.join(' ')
 end
 
 def negative?(word)
