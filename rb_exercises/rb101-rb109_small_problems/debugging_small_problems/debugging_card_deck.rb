@@ -6,6 +6,8 @@ require 'pry'
 
 cards = [2, 3, 4, 5, 6, 7, 8, 9, 10, :jack, :queen, :king, :ace]
 
+# without #clone or #dup, hash |k, v| pairs point to same array obj.
+# the #shuffle! call on the hash deck suffles all |k, v| pairs identically.
 deck = { :hearts   => cards.clone,
          :diamonds => cards.clone,
          :clubs    => cards.clone,
@@ -36,6 +38,7 @@ end
 # Determine the score of the remaining cards in the deck
 
 sum = deck.reduce(0) do |sum, (_, remaining_cards)|
+  # remaining_cards needs to be assigned or use #map!
   remaining_cards.map! do |card|
     score(card)
   end
