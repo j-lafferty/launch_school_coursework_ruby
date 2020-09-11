@@ -24,14 +24,20 @@ def guess_number(max_number, max_attempts)
 
     if guess == winning_number
       puts 'Yes! You win.'
+      break # need to break the loop if guess is correct
     else
       puts 'Nope. Too small.' if guess < winning_number
       puts 'Nope. Too big.'   if guess > winning_number
-
-      # Try again:
-      guess_number(max_number, max_attempts)
     end
   end
+
+  puts ''
+
+  # re-call method after game loop so winning number doesn't change with each guess
+  # Try again:
+  puts 'Try again? (y or n)' # need to indicate a new game
+  answer = gets.chomp # need a way to end the game
+  guess_number(max_number, max_attempts) if answer == 'y'
 end
 
 guess_number(10, 3)
