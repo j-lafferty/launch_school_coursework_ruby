@@ -24,3 +24,49 @@
 # nouns: fox dog head leg
 # verbs: jumps lifts bites licks
 # adverb: easily lazily noisily excitedly
+
+require 'pry'
+
+def replacement_word(list, type)
+  list[type].sample
+end
+
+def madlibs(text, list)
+  word_list = list.gsub(/[:]/, '')
+                  .split(/\n/)
+                  .map { |list| list.split(' ') }
+                  .map { |type| [type[0], type[1..-1]] }
+                  .to_h
+  
+  text_arr = text.split(' ')
+  
+  new_text = text_arr.map do |word|
+    case word
+    when '%{adjective}'
+      replacement_word(word_list, 'adjectives')
+    when '%{noun}'
+      replacement_word(word_list, 'nouns')
+    when '%{adverb}'
+      replacement_word(word_list, 'adverbs')
+    when '%{verb}'
+      replacement_word(word_list, 'verbs')
+    else
+      word
+    end
+    # binding.pry
+  end
+  
+  p new_text.join(' ')
+end
+
+replacement_word_list = "adjectives: quick lazy sleepy ugly
+nouns: fox dog head leg
+verbs: jumps lifts bites licks
+adverbs: easily lazily noisily excitedly"
+
+text = "The %{adjective} brown %{noun} %{adverb}
+%{verb} the %{adjective} yellow
+%{noun}, who %{adverb} %{verb} his
+%{noun} and looks around."
+
+madlibs(text, replacement_word_list)
