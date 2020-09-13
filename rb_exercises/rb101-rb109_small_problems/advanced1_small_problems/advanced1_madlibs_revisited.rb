@@ -27,36 +27,34 @@
 
 require 'pry'
 
-def replacement_word(list, type)
-  list[type].sample
+def replacement_word(list, speech_type)
+  speech_type.gsub!(/[[:punct:]]/, '') << 's'
+  list[speech_type].sample
 end
 
 def madlibs(text, list)
-  word_list = list.gsub(/[:]/, '')
-                  .split(/\n/)
-                  .map { |list| list.split(' ') }
-                  .map { |type| [type[0], type[1..-1]] }
-                  .to_h
+  replacement_list = list.gsub(/[:]/, '')
+                         .split(/\n/)
+                         .map { |list| list.split(' ') }
+                         .map { |type| [type[0], type[1..-1]] }
+                         .to_h
+  input_text_arr = text.split(' ')
   
-  text_arr = text.split(' ')
-  
-  new_text = text_arr.map do |word|
-    case word
-    when '%{adjective}'
-      replacement_word(word_list, 'adjectives')
-    when '%{noun}'
-      replacement_word(word_list, 'nouns')
-    when '%{adverb}'
-      replacement_word(word_list, 'adverbs')
-    when '%{verb}'
-      replacement_word(word_list, 'verbs')
+  madlib_text = input_text_arr.map do |word|
+    if word[-1].match?(/[,.!?]/)
+      punct = word.slice!(-1)
+    end
+
+    if PARTS_OF_SPEECH.include?(word)
+      word = replacement_word(replacement_list, word)
     else
       word
     end
-    # binding.pry
+
+    punct.nil? ? word : word << punct
   end
   
-  p new_text.join(' ')
+  p madlib_text.join(' ')
 end
 
 replacement_word_list = "adjectives: quick lazy sleepy ugly
@@ -68,5 +66,7 @@ text = "The %{adjective} brown %{noun} %{adverb}
 %{verb} the %{adjective} yellow
 %{noun}, who %{adverb} %{verb} his
 %{noun} and looks around."
+
+PARTS_OF_SPEECH = %w(%{adjective} %{noun} %{adverb} %{verb})
 
 madlibs(text, replacement_word_list)
