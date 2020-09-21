@@ -34,7 +34,7 @@ On `lines 1-9`, the method `example` is defined which takes 1 parameter.
 
 On `line 11` the method `example` is called and passed in the `String` object `'hello'` as an argument.
 
-On `line 1`, the parameter is initialized as variable `str` and assigned the argument `String` object `hello`.
+On `line 1`, the parameter is initialized as variable `str` and assigned the argument `String` object `'hello'`.
 
 On `line 2`, the local variable `i` is initialized and assigned the `Integer` object with value `3`.
 
@@ -46,4 +46,4 @@ On `line 6`, the local variable `i` is reassigned the return value of `i - 1`.
 
 On `line 7`, the keyword `break` will terminate the `loop` method if the local variable `i` is equal to the `Integer` object `0`.
 
-The method `example` will **output** the `String` object `hello` three times. Since there is no explicit `return` statement within the method definition, the last evaluated expression is returned. In this case, `break if i == 0` is the last evaluated statement, which **returns** `nil`. So, the method **returns** `nil`.
+The method `example` will **output** the `String` object `'hello'` three times. Since there is no explicit `return` statement within the method definition, the last evaluated expression is returned. In this case, `break if i == 0` is the last evaluated statement, which **returns** `nil`. So, the method **returns** `nil`.
