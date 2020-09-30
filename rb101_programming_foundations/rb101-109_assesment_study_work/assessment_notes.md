@@ -76,3 +76,35 @@ On `line 6`, the keyword `break` will terminate the `loop` after 1 iteration.
 On `line 9`, the method `puts` is called and passed in the variable `a` as an argument. The method `puts` will **output** the `Integer` object `5` and will **return** `nil`.
 
 On `line 10`, the method `puts` is called and passed in the variable `b` as an argument. Since the variable `b` was defined by the `do..end` block, it is not available to the outer scope. The method `puts` will raise an error, `undefined local variable or method b`.
+
+## Example #4
+
+```ruby
+a = 4
+b = 2
+
+loop do
+  c = 3
+  a = c
+  break
+end
+
+puts a
+puts b
+```
+
+On `line 1` of this code, the variable `a` is initialized within the outer scope and assigned the `Integer` object with value `4`.
+
+On `line 2` of this code, the variable `b` is initialized within the outer scope and assigned the `Integer` object with value `2`.
+
+On `line 4`, the method `loop` is called and passed in the `do..end` block and as an argument.
+
+On `line 5`, the method initializes and assigns the variable `c` to an `Integer` object with value `3` within the block scope.
+
+On `line 6`, the method reassigns the variable `a` to the `Integer` object that variable `c` is referencing. Since we are still in the inner scope defined by the block, local variable `c` is accessible. Both variable `a` and variable `c` are pointing to the same `Integer` object with value `3`.
+
+On `line 7`, the keyword `break` will terminate the `loop` after 1 iteration.
+
+On `line 10`, the method `puts` is called and passed in the variable `a` as an argument. The method `puts` will **output** the `Integer` object `3` and will **return** `nil`.
+
+On `line 11`, the method `puts` is called and passed in the variable `b` as an argument. The method `puts` will **output** the `Integer` object `2` and will **return** `nil`.
