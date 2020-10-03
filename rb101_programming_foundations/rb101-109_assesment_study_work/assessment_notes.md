@@ -108,3 +108,33 @@ On `line 7`, the keyword `break` will terminate the `loop` after 1 iteration.
 On `line 10`, the method `puts` is called and passed in the variable `a` as an argument. The method `puts` will **output** the `Integer` object `3` and will **return** `nil`.
 
 On `line 11`, the method `puts` is called and passed in the variable `b` as an argument. The method `puts` will **output** the `Integer` object `2` and will **return** `nil`.
+
+```ruby
+
+a = 4
+b = 2
+
+2.times do |a|
+  a = 5
+  puts a
+end
+
+puts a
+puts b
+```
+
+On `line 1` of this code, the variable `a` is initialized within the outer scope and assigned the `Integer` object with value `4`.
+
+On `line 2` of this code, the variable `b` is initialized within the outer scope and assigned the `Integer` object with value `2`.
+
+On `line 4`, the method `times` is called on the `Integer` object with value `2` and passing in the `do..end` block and as an argument with one parameter `a`. 
+
+On `line 5`, the method reassigns the block's local variable `a` to an `Integer` object with value `5` within the block scope. This local variable `a` is not the same outer scoped variable `a` that is defined on `line 1`. This is a concept called **variable shadowing**, which prevents access to variables of the same name initialized outside of the block.
+
+On `line 6`, the method `puts` is called and passed in the variable `a` as an argument. The method `puts` will **output** the `Integer` object `5` and will **return** `nil`.
+
+The block will iterate twice, as defined on `line 4` by the `times` method being called on the `Integer` object with value `2`.
+
+On `line 9`, the method `puts` is called and passed in the variable `a` as an argument. The method `puts` will **output** the `Integer` object `4` and will **return** `nil`.
+
+On `line 10`, the method `puts` is called and passed in the variable `b` as an argument. The method `puts` will **output** the `Integer` object `2` and will **return** `nil`.
